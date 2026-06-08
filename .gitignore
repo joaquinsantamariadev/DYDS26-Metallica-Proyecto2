@@ -1,0 +1,55 @@
+# ============================
+# IDE & Editor
+# ============================
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+
+# ============================
+# Gradle
+# ============================
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ============================
+# Kotlin / JVM
+# ============================
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+replay_pid*
+
+# ============================
+# OS Generated Files
+# ============================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================
+# Local Configuration
+# ============================
+local.properties
+*.local
+
+# ============================
+# Compose Multiplatform
+# ============================
+/kotlin-js-store/
