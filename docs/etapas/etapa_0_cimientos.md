@@ -78,7 +78,7 @@
 
 **Criterio de éxito:** Se puede hacer clic en cada ítem del sidebar y el contenido cambia.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
