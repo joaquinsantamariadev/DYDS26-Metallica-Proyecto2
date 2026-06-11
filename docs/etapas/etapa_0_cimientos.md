@@ -99,7 +99,7 @@
 
 **Criterio de éxito:** La app abre con sidebar visible, 5 secciones navegables, contenido cambia al hacer clic.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 

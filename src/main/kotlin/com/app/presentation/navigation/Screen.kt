@@ -16,6 +16,6 @@ sealed class Screen(val title: String, val icon: ImageVector) {
     data object Settings : Screen("Configuración", Icons.Default.Settings)
 
     companion object {
-        val entries = listOf(Dashboard, Inventory, PointOfSale, Reports, Settings)
+        val entries: List<Screen> get() = listOf(Dashboard, Inventory, PointOfSale, Reports, Settings)
     }
 }

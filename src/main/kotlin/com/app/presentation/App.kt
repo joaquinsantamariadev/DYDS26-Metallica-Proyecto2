@@ -1,5 +1,6 @@
 package com.app.presentation
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.Modifier
 import com.app.presentation.navigation.NavigationHost
 import com.app.presentation.navigation.Screen
 import com.app.presentation.utils.AppTheme
+import com.app.presentation.utils.Sidebar
 
 @Composable
 fun App() {
@@ -18,7 +20,16 @@ fun App() {
 
     AppTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
-            NavigationHost(currentScreen = currentScreen)
+            Row(modifier = Modifier.fillMaxSize()) {
+                Sidebar(
+                    currentScreen = currentScreen,
+                    onScreenSelected = { currentScreen = it }
+                )
+                NavigationHost(
+                    currentScreen = currentScreen,
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
     }
 }
