@@ -49,7 +49,7 @@
 
 **Criterio de éxito:** El tema se aplica correctamente al ejecutar la app.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
