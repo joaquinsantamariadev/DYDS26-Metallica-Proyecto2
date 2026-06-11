@@ -1,48 +1,24 @@
 package com.app.presentation.navigation
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.app.presentation.dashboard.DashboardScreen
+import com.app.presentation.inventory.InventoryScreen
+import com.app.presentation.pos.PosScreen
+import com.app.presentation.reports.ReportsScreen
+import com.app.presentation.settings.SettingsScreen
 
 @Composable
 fun NavigationHost(currentScreen: Screen, modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize()) {
         when (currentScreen) {
-            is Screen.Dashboard -> ScreenPlaceholder(currentScreen)
-            is Screen.Inventory -> ScreenPlaceholder(currentScreen)
-            is Screen.PointOfSale -> ScreenPlaceholder(currentScreen)
-            is Screen.Reports -> ScreenPlaceholder(currentScreen)
-            is Screen.Settings -> ScreenPlaceholder(currentScreen)
-        }
-    }
-}
-
-@Composable
-private fun ScreenPlaceholder(screen: Screen) {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                imageVector = screen.icon,
-                contentDescription = screen.title,
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colors.primary
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = screen.title,
-                style = MaterialTheme.typography.h5,
-                color = MaterialTheme.colors.onBackground
-            )
+            is Screen.Dashboard -> DashboardScreen()
+            is Screen.Inventory -> InventoryScreen()
+            is Screen.PointOfSale -> PosScreen()
+            is Screen.Reports -> ReportsScreen()
+            is Screen.Settings -> SettingsScreen()
         }
     }
 }

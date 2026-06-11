@@ -123,7 +123,7 @@
 
 **Criterio de éxito:** Cada sección muestra su nombre al navegar a ella.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
