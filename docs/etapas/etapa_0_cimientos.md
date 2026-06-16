@@ -162,7 +162,7 @@
 
 **Criterio de éxito:** La app compila y ejecuta sin errores ni warnings. La estructura de paquetes refleja las 5 secciones del sistema.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 

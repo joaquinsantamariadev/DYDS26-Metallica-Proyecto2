@@ -53,3 +53,9 @@ local.properties
 # Compose Multiplatform
 # ============================
 /kotlin-js-store/
+
+# ============================
+# Database
+# ============================
+*.db
+*.db-journal
