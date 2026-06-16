@@ -16,8 +16,8 @@ El sistema se construye en **7 etapas progresivas**. Cada etapa tiene su propio 
 
 | # | Etapa | Estado | Plan Detallado | Descripción |
 |---|-------|--------|----------------|-------------|
-| 0 | Cimientos y Shell de Navegación | 🔲 Pendiente | `docs/etapas/etapa_0_cimientos.md` | Build system, dependencias, tema visual, shell de la app con sidebar y paneles vacíos, configuración de BD |
-| 1 | Modelo de Datos y Persistencia | 🔲 Pendiente | _Se genera al iniciar_ | Entities, tablas de BD, repository interfaces + implementaciones CRUD base |
+| 0 | Cimientos y Shell de Navegación | ✅ Completada | `docs/etapas/etapa_0_cimientos.md` | Build system, dependencias, tema visual, shell de la app con sidebar y paneles vacíos, configuración de BD |
+| 1 | Modelo de Datos y Persistencia | 🔄 En progreso | `docs/etapas/etapa_1_persistencia.md` | Entities, tablas de BD, repository interfaces + implementaciones CRUD base |
 | 2 | Gestión de Inventario | 🔲 Pendiente | _Se genera al iniciar_ | Catálogo, Categorías, Ingreso con escáner (OpenFoodFacts), Vencimientos |
 | 3 | Punto de Venta (POS) | 🔲 Pendiente | _Se genera al iniciar_ | Venta activa, carrito, impacto transaccional de stock, cierre de caja |
 | 4 | Dashboard | 🔲 Pendiente | _Se genera al iniciar_ | Métricas, alertas de bajo stock / vencimientos, actividad reciente |
