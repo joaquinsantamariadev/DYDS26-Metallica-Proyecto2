@@ -144,7 +144,7 @@
 
 **Criterio de éxito:** La app arranca, crea el archivo `.db` en disco, y no hay errores de conexión.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
