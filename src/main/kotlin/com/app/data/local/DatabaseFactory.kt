@@ -1,6 +1,7 @@
 package com.app.data.local
 
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.File
 
@@ -13,8 +14,7 @@ object DatabaseFactory {
         )
         
         transaction {
-            // Aquí se crearán las tablas en la Etapa 1
-            // ej: SchemaUtils.create(ProductTable)
+            SchemaUtils.create(CategoryTable, ProductTable, ExchangeRateTable)
         }
     }
 }

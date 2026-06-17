@@ -42,7 +42,7 @@
 
 **Criterio de éxito:** La app corre y las tablas se crean en `stock_control.db`.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
