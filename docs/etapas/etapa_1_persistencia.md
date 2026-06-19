@@ -60,7 +60,7 @@
 
 **Criterio de éxito:** Las interfaces aíslan a los repositorios de la base de datos, manteniendo Clean Architecture.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
@@ -73,7 +73,7 @@
 
 **Criterio de éxito:** El módulo de Koin arranca sin errores de resolución.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
