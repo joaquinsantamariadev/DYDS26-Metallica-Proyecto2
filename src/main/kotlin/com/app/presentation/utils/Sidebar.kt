@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -34,7 +33,7 @@ fun Sidebar(
         modifier = modifier
             .width(240.dp)
             .fillMaxHeight()
-            .background(DarkSurfaceVariant)
+            .background(BoneWhite)
             .padding(vertical = 16.dp)
     ) {
         Text(
@@ -45,7 +44,7 @@ fun Sidebar(
         )
 
         Divider(
-            color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+            color = DarkSand,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
 
@@ -66,15 +65,15 @@ private fun SidebarItem(
     onClick: () -> Unit
 ) {
     val backgroundColor = if (isSelected) {
-        MaterialTheme.colors.primary.copy(alpha = 0.12f)
+        LightPeach
     } else {
-        DarkSurfaceVariant
+        BoneWhite
     }
 
     val contentColor = if (isSelected) {
         MaterialTheme.colors.primary
     } else {
-        MaterialTheme.colors.onSurface.copy(alpha = 0.7f)
+        TaupeGray
     }
 
     Box(modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)) {

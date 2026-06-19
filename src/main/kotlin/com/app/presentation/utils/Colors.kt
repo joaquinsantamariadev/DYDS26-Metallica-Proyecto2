@@ -2,16 +2,11 @@ package com.app.presentation.utils
 
 import androidx.compose.ui.graphics.Color
 
-val Teal500 = Color(0xFF00BFA5)
-val Teal700 = Color(0xFF00897B)
-val Amber400 = Color(0xFFFFB74D)
-val Amber600 = Color(0xFFFF9800)
-
-val DarkBackground = Color(0xFF121212)
-val DarkSurface = Color(0xFF1E1E2E)
-val DarkSurfaceVariant = Color(0xFF2A2A3C)
-
-val ErrorRed = Color(0xFFCF6679)
-
-val TextPrimary = Color(0xFFE8E8E8)
-val TextSecondary = Color(0xFFB0B0B0)
+val BoneWhite = Color(0xFFFDFBF7) // Superficies
+val SandBeige = Color(0xFFF4EBE1) // Fondo Principal
+val PeachOrange = Color(0xFFF59B6A) // Color Primario
+val LightPeach = Color(0xFFFCE6D8) // Fondo Activo
+val CoffeeBrown = Color(0xFFA87657) // Color Secundario
+val CharcoalBrown = Color(0xFF2C2420) // Texto Principal
+val TaupeGray = Color(0xFF857A73) // Texto Secundario
+val DarkSand = Color(0xFFEADED5) // Bordes y Divisores

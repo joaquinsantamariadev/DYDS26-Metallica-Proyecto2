@@ -37,7 +37,7 @@
 
 **Criterio de éxito:** La lógica de "fallback" (local -> remoto -> local) está centralizada y testeable, sin acoplarse a la interfaz gráfica.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
