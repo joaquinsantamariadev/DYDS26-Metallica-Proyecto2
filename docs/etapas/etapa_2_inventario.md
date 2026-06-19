@@ -52,7 +52,7 @@
 
 **Criterio de éxito:** El ViewModel orquesta las llamadas asíncronas y expone estados limpios sin dependencias a librerías de UI de Compose.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
@@ -70,7 +70,7 @@
 
 **Criterio de éxito:** La pantalla se ve profesional y moderna, y responde a las interacciones agregando productos desde la API al listado.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
@@ -86,4 +86,4 @@
 
 **Criterio de éxito:** El ciclo completo (UI -> ViewModel -> UseCase -> API/BD) funciona perfectamente y sin errores de dependencias. Commit de cierre de etapa.
 
-- [ ] Completada
+- [x] Completada
