@@ -19,7 +19,7 @@
 
 **Criterio de éxito:** El cliente puede hacer una petición real a la API y retornar una entidad pura `Product` poblada.
 
-- [ ] Completada
+- [x] Completada
 
 ---
 
