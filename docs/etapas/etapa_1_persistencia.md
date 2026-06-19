@@ -85,4 +85,4 @@
 
 **Criterio de éxito:** El commit pasa y la etapa se cierra exitosamente.
 
-- [ ] Completada
+- [x] Completada
