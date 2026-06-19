@@ -13,6 +13,13 @@ class InventoryRepositoryImpl : InventoryRepository {
         ProductTable.selectAll().map { it.toProduct() }
     }
 
+    override suspend fun getProductByBarcode(barcode: String): Product? = transaction {
+        ProductTable.selectAll()
+            .where { ProductTable.barcode eq barcode }
+            .map { it.toProduct() }
+            .singleOrNull()
+    }
+
     override suspend fun insertProduct(product: Product) {
         transaction {
             ProductTable.insert {
