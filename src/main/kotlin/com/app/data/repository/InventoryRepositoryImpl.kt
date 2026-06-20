@@ -58,4 +58,19 @@ class InventoryRepositoryImpl : InventoryRepository {
             ProductTable.deleteWhere { ProductTable.id eq id }
         }
     }
+
+    override suspend fun getProductById(id: Int): Product? = transaction {
+        ProductTable.selectAll()
+            .where { ProductTable.id eq id }
+            .map { it.toProduct() }
+            .singleOrNull()
+    }
+
+    override suspend fun updateStock(productId: Int, newStock: Int) {
+        transaction {
+            ProductTable.update({ ProductTable.id eq productId }) {
+                it[stock] = newStock
+            }
+        }
+    }
 }

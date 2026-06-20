@@ -8,4 +8,6 @@ interface InventoryRepository {
     suspend fun insertProduct(product: Product)
     suspend fun updateProduct(product: Product)
     suspend fun deleteProduct(id: Int)
+    suspend fun getProductById(id: Int): Product?
+    suspend fun updateStock(productId: Int, newStock: Int)
 }
