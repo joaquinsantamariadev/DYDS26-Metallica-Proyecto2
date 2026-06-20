@@ -14,7 +14,8 @@ object DatabaseFactory {
         )
         
         transaction {
-            SchemaUtils.create(CategoryTable, ProductTable, ExchangeRateTable)
+            SchemaUtils.create(CategoryTable, ProductTable, ExchangeRateTable, CashRegisterSessionsTable,
+                SalesTable, SaleItemsTable)
         }
     }
 }
