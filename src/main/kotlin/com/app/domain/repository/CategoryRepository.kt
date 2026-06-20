@@ -1,0 +1,10 @@
+package com.app.domain.repository
+
+import com.app.domain.entity.Category
+
+interface CategoryRepository {
+    suspend fun getCategories(): List<Category>
+    suspend fun insertCategory(category: Category)
+    suspend fun updateCategory(category: Category)
+    suspend fun deleteCategory(id: Int)
+}

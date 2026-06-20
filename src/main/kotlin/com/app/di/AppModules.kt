@@ -1,11 +1,13 @@
 package com.app.di
 
 import com.app.data.external.OpenFoodFactsClient
+import com.app.data.repository.CategoryRepositoryImpl
 import com.app.data.repository.ExchangeRateRepositoryImpl
 import com.app.data.repository.InventoryRepositoryImpl
-import com.app.domain.repository.ProductExternalSource
+import com.app.domain.repository.CategoryRepository
 import com.app.domain.repository.ExchangeRateRepository
 import com.app.domain.repository.InventoryRepository
+import com.app.domain.repository.ProductExternalSource
 import com.app.domain.usecase.ScanProductUseCase
 import com.app.presentation.inventory.InventoryViewModel
 import io.ktor.client.HttpClient
@@ -29,6 +31,7 @@ val appModule = module {
 
     single<InventoryRepository> { InventoryRepositoryImpl() }
     single<ExchangeRateRepository> { ExchangeRateRepositoryImpl() }
+    single<CategoryRepository> { CategoryRepositoryImpl() }
     single<ProductExternalSource> { OpenFoodFactsClient(get()) }
 
     factory { ScanProductUseCase(get(), get()) }
