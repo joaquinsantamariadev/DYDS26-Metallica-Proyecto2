@@ -9,6 +9,7 @@ import com.app.domain.repository.ExchangeRateRepository
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.repository.ProductExternalSource
 import com.app.domain.usecase.ScanProductUseCase
+import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
@@ -36,4 +37,5 @@ val appModule = module {
 
     factory { ScanProductUseCase(get(), get()) }
     factory { InventoryViewModel(get(), get()) }
+    factory { CategoryViewModel(get()) }
 }
