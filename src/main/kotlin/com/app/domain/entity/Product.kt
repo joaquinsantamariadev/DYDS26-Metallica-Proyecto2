@@ -1,5 +1,7 @@
 package com.app.domain.entity
 
+import java.time.LocalDate
+
 data class Product(
     val id: Int? = null,
     val barcode: String?,
@@ -7,5 +9,7 @@ data class Product(
     val categoryId: Int?,
     val price: Double,
     val cost: Double,
-    val stock: Int
+    val stock: Int,
+    val imageUrl: String? = null,
+    val expiryDate: LocalDate? = null
 )

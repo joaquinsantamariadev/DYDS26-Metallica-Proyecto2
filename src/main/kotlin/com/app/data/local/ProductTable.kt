@@ -1,6 +1,7 @@
 package com.app.data.local
 
 import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.javatime.date
 
 object ProductTable : Table("products") {
     val id = integer("id").autoIncrement()
@@ -10,6 +11,8 @@ object ProductTable : Table("products") {
     val price = double("price")
     val cost = double("cost")
     val stock = integer("stock")
+    val imageUrl = varchar("image_url", 1024).nullable()
+    val expiryDate = date("expiry_date").nullable()
 
     override val primaryKey = PrimaryKey(id)
 }

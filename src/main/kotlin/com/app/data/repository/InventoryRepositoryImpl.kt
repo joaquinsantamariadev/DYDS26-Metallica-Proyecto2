@@ -29,6 +29,8 @@ class InventoryRepositoryImpl : InventoryRepository {
                 it[price] = product.price
                 it[cost] = product.cost
                 it[stock] = product.stock
+                it[imageUrl] = product.imageUrl
+                it[expiryDate] = product.expiryDate
             }
         }
     }

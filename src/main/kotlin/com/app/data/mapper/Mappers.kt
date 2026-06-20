@@ -21,6 +21,8 @@ fun ResultRow.toProduct() = Product(
     price = this[ProductTable.price],
     cost = this[ProductTable.cost],
     stock = this[ProductTable.stock],
+    imageUrl = this[ProductTable.imageUrl],
+    expiryDate = this[ProductTable.expiryDate]
 )
 
 fun ResultRow.toExchangeRate() = ExchangeRate(
