@@ -446,14 +446,14 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 ## 6. Checklist de Progreso
 
 ### Fase A — Dominio
-- [ ] T-01: Entities (Sale, SaleItem, PaymentMethod, CashRegisterSession, SessionStatus)
-- [ ] T-02: Interfaces (SaleRepository, CashRegisterRepository)
-- [ ] T-02A: Extend InventoryRepository (getProductById, updateStock)
-- [ ] T-03: ValidateCartStockUseCase
-- [ ] T-04: CalculateCartTotalUseCase
-- [ ] T-05: CompleteSaleUseCase
-- [ ] T-06: Reutilizar ScanProductUseCase de Etapa 2
-- [ ] T-07: Use cases de caja (Open, Close, GetActive)
+- [X] T-01: Entities (Sale, SaleItem, PaymentMethod, CashRegisterSession, SessionStatus)
+- [X] T-02: Interfaces (SaleRepository, CashRegisterRepository)
+- [X] T-02A: Extend InventoryRepository (getProductById, updateStock)
+- [X] T-03: ValidateCartStockUseCase
+- [X] T-04: CalculateCartTotalUseCase
+- [X] T-05: CompleteSaleUseCase
+- [X] T-06: Reutilizar ScanProductUseCase de Etapa 2
+- [X] T-07: Use cases de caja (Open, Close, GetActive)
 
 ### Fase B — Datos
 - [ ] T-08: Tablas + DatabaseFactory
