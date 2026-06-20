@@ -20,7 +20,7 @@ fun ResultRow.toProduct() = Product(
     categoryId = this[ProductTable.categoryId],
     price = this[ProductTable.price],
     cost = this[ProductTable.cost],
-    stock = this[ProductTable.stock]
+    stock = this[ProductTable.stock],
 )
 
 fun ResultRow.toExchangeRate() = ExchangeRate(
