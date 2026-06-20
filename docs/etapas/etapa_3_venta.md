@@ -456,14 +456,14 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 - [X] T-07: Use cases de caja (Open, Close, GetActive)
 
 ### Fase B — Datos
-- [ ] T-08: Tablas + DatabaseFactory
-- [ ] T-09: SaleLocalDataSource + Impl
-- [ ] T-10: CashRegisterLocalDataSource + Impl
-- [ ] T-11: SaleMapper + SaleItemMapper
-- [ ] T-12: CashRegisterMapper
-- [ ] T-13: SaleRepositoryImpl
-- [ ] T-14: CashRegisterRepositoryImpl
-- [ ] T-15: AppModules.kt (DI)
+- [X] T-08: Tablas + DatabaseFactory
+- [X] T-09: SaleLocalDataSource + Impl
+- [X] T-10: CashRegisterLocalDataSource + Impl
+- [X] T-11: SaleMapper + SaleItemMapper
+- [X] T-12: CashRegisterMapper
+- [X] T-13: SaleRepositoryImpl
+- [X] T-14: CashRegisterRepositoryImpl
+- [X] T-15: AppModules.kt (DI)
 
 ### Fase C — Presentación 3A
 - [ ] T-16: PosState, PosEvent, CartItem
