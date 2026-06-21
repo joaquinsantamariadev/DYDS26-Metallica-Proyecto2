@@ -312,9 +312,9 @@ repositorio, en el data source ni en la UI.
 ## 8. Checklist de Progreso
 
 ### Fase A — Dominio
-- [ ] 4A-1 `DashboardMetrics`, `StockAlert`, `ExpiryAlert`, `RecentSaleEntry` definidas
-- [ ] 4A-2 Interfaz `DashboardRepository` declarada
-- [ ] 4A-3 Clases de los 4 casos de uso implementadas con constantes de negocio
+- [X] 4A-1 `DashboardMetrics`, `StockAlert`, `ExpiryAlert`, `RecentSaleEntry` definidas
+- [X] 4A-2 Interfaz `DashboardRepository` declarada
+- [X] 4A-3 Clases de los 4 casos de uso implementadas con constantes de negocio
 
 ### Fase B — Datos
 - [ ] 4B-1 `DashboardRepositoryImpl` con queries Exposed implementado

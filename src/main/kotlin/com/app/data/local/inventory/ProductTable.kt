@@ -11,6 +11,7 @@ object ProductTable : Table("products") {
     val price = double("price")
     val cost = double("cost")
     val stock = integer("stock")
+    val minStock = integer("min_stock").default(0)
     val imageUrl = varchar("image_url", 1024).nullable()
     val expiryDate = date("expiry_date").nullable()
 

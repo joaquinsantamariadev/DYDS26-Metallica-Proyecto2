@@ -10,6 +10,7 @@ data class Product(
     val price: Double,
     val cost: Double,
     val stock: Int,
+    val minStock: Int = 0,
     val imageUrl: String? = null,
     val expiryDate: LocalDate? = null
 )
