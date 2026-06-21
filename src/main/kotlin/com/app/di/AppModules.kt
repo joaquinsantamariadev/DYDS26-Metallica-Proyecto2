@@ -64,5 +64,5 @@ val appModule = module {
 
     factory { InventoryViewModel(get(), get()) }
     factory { CategoryViewModel(get()) }
-    factory { PosViewModel(get(), get(), get()) }
+    factory { PosViewModel(get(), get(), get(), get(), get()) }
 }

@@ -2,6 +2,8 @@ package com.app.presentation.pos
 
 import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.SaleItem
+import com.app.domain.repository.InventoryRepository
+import com.app.domain.usecase.ScanProductUseCase
 import com.app.domain.usecase.cart.CalculateCartTotalUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
@@ -17,7 +19,9 @@ import kotlinx.coroutines.launch
 class PosViewModel(
     private val getActiveSessionUseCase: GetActiveSessionUseCase,
     private val calculateCartTotalUseCase: CalculateCartTotalUseCase,
-    private val completeSaleUseCase: CompleteSaleUseCase
+    private val completeSaleUseCase: CompleteSaleUseCase,
+    private val scanProductUseCase: ScanProductUseCase,
+    private val inventoryRepository: InventoryRepository
 ) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -26,8 +30,7 @@ class PosViewModel(
 
     init {
         scope.launch {
-            val session = getActiveSessionUseCase()
-            _state.update { it.copy(activeSession = session) }
+            _state.update { it.copy(activeSession = getActiveSessionUseCase()) }
         }
     }
 
@@ -37,8 +40,11 @@ class PosViewModel(
             is PosEvent.RemoveItem -> removeItem(event.productId)
             is PosEvent.UpdateQuantity -> updateQuantity(event.productId, event.quantity)
             is PosEvent.CompleteSale -> completeSale(event.paymentMethod)
+            is PosEvent.SearchByName -> searchByName(event.query)
+            is PosEvent.ScanBarcode -> scanBarcode(event.barcode)
             PosEvent.ClearCart -> clearCart()
             PosEvent.DismissError -> _state.update { it.copy(error = null) }
+            PosEvent.AcknowledgeSale -> _state.update { it.copy(saleCompleted = false) }
         }
     }
 
@@ -106,6 +112,33 @@ class PosViewModel(
                         _state.update { s -> s.copy(isLoading = false, error = e.message) }
                     }
                 )
+        }
+    }
+
+    private fun searchByName(query: String) {
+        _state.update { it.copy(searchQuery = query) }
+        if (query.isBlank()) {
+            _state.update { it.copy(searchResults = emptyList()) }
+            return
+        }
+        scope.launch {
+            val results = inventoryRepository.getProducts()
+                .filter { it.name.contains(query, ignoreCase = true) }
+            _state.update { it.copy(searchResults = results) }
+        }
+    }
+
+    private fun scanBarcode(barcode: String) {
+        scope.launch {
+            _state.update { it.copy(isLoading = true) }
+            val product = scanProductUseCase(barcode)
+            _state.update { s ->
+                s.copy(
+                    isLoading = false,
+                    searchResults = if (product != null) listOf(product) else emptyList(),
+                    error = if (product == null) "Producto no encontrado para el código $barcode" else null
+                )
+            }
         }
     }
 
