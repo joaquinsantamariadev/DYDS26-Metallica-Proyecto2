@@ -1,10 +1,6 @@
 package com.app.di
 
 import com.app.data.external.OpenFoodFactsClient
-import com.app.data.local.sales.CashRegisterLocalDataSource
-import com.app.data.local.sales.CashRegisterLocalDataSourceImpl
-import com.app.data.local.sales.SaleLocalDataSource
-import com.app.data.local.sales.SaleLocalDataSourceImpl
 import com.app.data.repository.*
 import com.app.domain.repository.*
 import com.app.domain.usecase.ScanProductUseCase
@@ -41,11 +37,8 @@ val appModule = module {
     single<CategoryRepository> { CategoryRepositoryImpl() }
     single<ProductExternalSource> { OpenFoodFactsClient(get()) }
 
-    single<SaleLocalDataSource> { SaleLocalDataSourceImpl() }
-    single<CashRegisterLocalDataSource> { CashRegisterLocalDataSourceImpl() }
-
-    single<SaleRepository> { SaleRepositoryImpl(get()) }
-    single<CashRegisterRepository> { CashRegisterRepositoryImpl(get()) }
+    single<SaleRepository> { SaleRepositoryImpl() }
+    single<CashRegisterRepository> { CashRegisterRepositoryImpl() }
 
     factory { ScanProductUseCase(get(), get()) }
     factory { ValidateCartStockUseCase(get()) }
