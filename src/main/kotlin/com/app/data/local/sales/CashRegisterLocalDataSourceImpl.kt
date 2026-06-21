@@ -1,4 +1,4 @@
-package com.app.data.local
+package com.app.data.local.sales
 
 import com.app.domain.entity.SessionStatus
 import org.jetbrains.exposed.sql.ResultRow

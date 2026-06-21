@@ -1,4 +1,4 @@
-package com.app.data.local
+package com.app.data.local.inventory
 
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.javatime.date

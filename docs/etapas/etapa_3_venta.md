@@ -468,8 +468,8 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 ### Fase C — Presentación 3A
 - [X] T-16: PosState, PosEvent, CartItem
 - [X] T-17: PosViewModel
-- [ ] T-18: Componentes (ProductSearchPanel, CartPanel, PaymentDialog)
-- [ ] T-19: PosScreen + navegación
+- [X] T-18: Componentes (ProductSearchPanel, CartPanel, PaymentDialog)
+- [X] T-19: PosScreen + navegación
 
 ### Fase D — Presentación 3B
 - [ ] T-20: CashRegisterState, CashRegisterEvent

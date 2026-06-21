@@ -1,6 +1,6 @@
 package com.app.data.repository
 
-import com.app.data.local.CategoryTable
+import com.app.data.local.inventory.CategoryTable
 import com.app.data.mapper.toCategory
 import com.app.domain.entity.Category
 import com.app.domain.repository.CategoryRepository

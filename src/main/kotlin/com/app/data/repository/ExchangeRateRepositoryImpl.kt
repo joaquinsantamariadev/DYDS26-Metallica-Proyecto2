@@ -1,6 +1,6 @@
 package com.app.data.repository
 
-import com.app.data.local.ExchangeRateTable
+import com.app.data.local.inventory.ExchangeRateTable
 import com.app.data.mapper.toExchangeRate
 import com.app.domain.entity.ExchangeRate
 import com.app.domain.repository.ExchangeRateRepository

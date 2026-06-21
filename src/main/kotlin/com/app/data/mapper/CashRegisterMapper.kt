@@ -1,6 +1,6 @@
 package com.app.data.mapper
 
-import com.app.data.local.CashRegisterSessionsTable
+import com.app.data.local.sales.CashRegisterSessionsTable
 import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.SessionStatus
 import org.jetbrains.exposed.sql.ResultRow

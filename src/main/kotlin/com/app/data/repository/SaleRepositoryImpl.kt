@@ -1,7 +1,7 @@
 package com.app.data.repository
 
-import com.app.data.local.SaleLocalDataSource
-import com.app.data.local.SalesTable
+import com.app.data.local.sales.SaleLocalDataSource
+import com.app.data.local.sales.SalesTable
 import com.app.data.mapper.SaleMapper
 import com.app.domain.entity.Sale
 import com.app.domain.repository.SaleRepository

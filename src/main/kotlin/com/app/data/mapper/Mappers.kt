@@ -1,8 +1,8 @@
 package com.app.data.mapper
 
-import com.app.data.local.CategoryTable
-import com.app.data.local.ExchangeRateTable
-import com.app.data.local.ProductTable
+import com.app.data.local.inventory.CategoryTable
+import com.app.data.local.inventory.ExchangeRateTable
+import com.app.data.local.inventory.ProductTable
 import com.app.domain.entity.Category
 import com.app.domain.entity.ExchangeRate
 import com.app.domain.entity.Product

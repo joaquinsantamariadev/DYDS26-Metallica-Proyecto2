@@ -1,10 +1,10 @@
 package com.app.di
 
 import com.app.data.external.OpenFoodFactsClient
-import com.app.data.local.CashRegisterLocalDataSource
-import com.app.data.local.CashRegisterLocalDataSourceImpl
-import com.app.data.local.SaleLocalDataSource
-import com.app.data.local.SaleLocalDataSourceImpl
+import com.app.data.local.sales.CashRegisterLocalDataSource
+import com.app.data.local.sales.CashRegisterLocalDataSourceImpl
+import com.app.data.local.sales.SaleLocalDataSource
+import com.app.data.local.sales.SaleLocalDataSourceImpl
 import com.app.data.mapper.CashRegisterMapper
 import com.app.data.mapper.SaleItemMapper
 import com.app.data.mapper.SaleMapper

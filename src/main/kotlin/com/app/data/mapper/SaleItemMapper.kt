@@ -1,6 +1,6 @@
 package com.app.data.mapper
 
-import com.app.data.local.SaleItemsTable
+import com.app.data.local.sales.SaleItemsTable
 import com.app.domain.entity.SaleItem
 import org.jetbrains.exposed.sql.ResultRow
 

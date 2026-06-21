@@ -1,6 +1,6 @@
 package com.app.data.repository
 
-import com.app.data.local.CashRegisterLocalDataSource
+import com.app.data.local.sales.CashRegisterLocalDataSource
 import com.app.data.mapper.CashRegisterMapper
 import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.SessionStatus

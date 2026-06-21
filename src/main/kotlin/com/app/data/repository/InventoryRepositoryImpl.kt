@@ -1,6 +1,6 @@
 package com.app.data.repository
 
-import com.app.data.local.ProductTable
+import com.app.data.local.inventory.ProductTable
 import com.app.data.mapper.toProduct
 import com.app.domain.entity.Product
 import com.app.domain.repository.InventoryRepository
