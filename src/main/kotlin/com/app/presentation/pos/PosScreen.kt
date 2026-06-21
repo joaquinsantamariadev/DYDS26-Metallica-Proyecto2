@@ -7,18 +7,33 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.app.presentation.pos.cashregister.CashRegisterScreen
+import com.app.presentation.pos.cashregister.CashRegisterViewModel
 import com.app.presentation.pos.components.CartPanel
 import com.app.presentation.pos.components.PaymentDialog
 import com.app.presentation.pos.components.ProductSearchPanel
+import com.app.presentation.pos.components.SessionStatusBar
 import com.app.presentation.utils.BoneWhite
 import com.app.presentation.utils.DarkSand
 import com.app.presentation.utils.SandBeige
 
 @Composable
-fun PosScreen(viewModel: PosViewModel) {
+fun PosScreen(viewModel: PosViewModel, cashRegisterViewModel: CashRegisterViewModel) {
     val state by viewModel.state.collectAsState()
     val scaffoldState = rememberScaffoldState()
     var showPaymentDialog by remember { mutableStateOf(false) }
+    var showCashRegister by remember { mutableStateOf(false) }
+
+    if (showCashRegister) {
+        CashRegisterScreen(
+            viewModel = cashRegisterViewModel,
+            onBack = {
+                showCashRegister = false
+                viewModel.onEvent(PosEvent.RefreshSession)
+            }
+        )
+        return
+    }
 
     LaunchedEffect(state.error) {
         state.error?.let {
@@ -35,19 +50,25 @@ fun PosScreen(viewModel: PosViewModel) {
     }
 
     Scaffold(scaffoldState = scaffoldState) {
-        Row(modifier = Modifier.fillMaxSize().background(SandBeige)) {
-            ProductSearchPanel(
-                state = state,
-                onEvent = viewModel::onEvent,
-                modifier = Modifier.weight(0.55f).background(BoneWhite)
+        Column(modifier = Modifier.fillMaxSize().background(SandBeige)) {
+            SessionStatusBar(
+                activeSession = state.activeSession,
+                onManageSession = { showCashRegister = true }
             )
-            Box(modifier = Modifier.fillMaxHeight().width(1.dp).background(DarkSand))
-            CartPanel(
-                state = state,
-                onEvent = viewModel::onEvent,
-                onCheckout = { showPaymentDialog = true },
-                modifier = Modifier.weight(0.45f)
-            )
+            Row(modifier = Modifier.weight(1f)) {
+                ProductSearchPanel(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    modifier = Modifier.weight(0.55f).background(BoneWhite)
+                )
+                Box(modifier = Modifier.fillMaxHeight().width(1.dp).background(DarkSand))
+                CartPanel(
+                    state = state,
+                    onEvent = viewModel::onEvent,
+                    onCheckout = { showPaymentDialog = true },
+                    modifier = Modifier.weight(0.45f)
+                )
+            }
         }
     }
 

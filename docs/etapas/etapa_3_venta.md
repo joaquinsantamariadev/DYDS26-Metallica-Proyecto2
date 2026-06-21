@@ -472,10 +472,10 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 - [X] T-19: PosScreen + navegación
 
 ### Fase D — Presentación 3B
-- [ ] T-20: CashRegisterState, CashRegisterEvent
-- [ ] T-21: CashRegisterViewModel
-- [ ] T-22: CashRegisterScreen
-- [ ] T-23: Session guard integrado en PosScreen
+- [X] T-20: CashRegisterState, CashRegisterEvent
+- [X] T-21: CashRegisterViewModel
+- [X] T-22: CashRegisterScreen
+- [X] T-23: Session guard integrado en PosScreen
 
 ### Fase E — Tests
 - [ ] T-24: Fakes (SaleRepositoryFake, CashRegisterRepositoryFake)

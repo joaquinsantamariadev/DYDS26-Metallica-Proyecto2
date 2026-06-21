@@ -11,7 +11,9 @@ import com.app.presentation.pos.PosScreen
 import com.app.presentation.pos.PosViewModel
 import com.app.presentation.reports.ReportsScreen
 import com.app.presentation.settings.SettingsScreen
+import com.app.presentation.pos.cashregister.CashRegisterViewModel
 import org.koin.java.KoinJavaComponent.get
+
 @Composable
 fun NavigationHost(currentScreen: Screen, modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize()) {
@@ -23,7 +25,8 @@ fun NavigationHost(currentScreen: Screen, modifier: Modifier = Modifier) {
             }
             is Screen.PointOfSale -> {
                 val viewModel = get<PosViewModel>(PosViewModel::class.java)
-                PosScreen(viewModel)
+                val cashRegisterViewModel = get<CashRegisterViewModel>(CashRegisterViewModel::class.java)
+                PosScreen(viewModel, cashRegisterViewModel)
             }
             is Screen.Reports -> ReportsScreen()
             is Screen.Settings -> SettingsScreen()

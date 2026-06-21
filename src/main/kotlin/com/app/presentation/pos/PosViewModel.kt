@@ -45,6 +45,9 @@ class PosViewModel(
             PosEvent.ClearCart -> clearCart()
             PosEvent.DismissError -> _state.update { it.copy(error = null) }
             PosEvent.AcknowledgeSale -> _state.update { it.copy(saleCompleted = false) }
+            PosEvent.RefreshSession -> scope.launch {
+                _state.update { it.copy(activeSession = getActiveSessionUseCase()) }
+            }
         }
     }
 
