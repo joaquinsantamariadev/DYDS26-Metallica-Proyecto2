@@ -21,9 +21,9 @@ class PosViewModel(
     private val calculateCartTotalUseCase: CalculateCartTotalUseCase,
     private val completeSaleUseCase: CompleteSaleUseCase,
     private val scanProductUseCase: ScanProductUseCase,
-    private val inventoryRepository: InventoryRepository
+    private val inventoryRepository: InventoryRepository,
+    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     private val _state = MutableStateFlow(PosState())
     val state: StateFlow<PosState> = _state.asStateFlow()

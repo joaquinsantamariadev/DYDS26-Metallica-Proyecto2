@@ -17,9 +17,9 @@ class CashRegisterViewModel(
     private val openCashRegisterUseCase: OpenCashRegisterUseCase,
     private val closeCashRegisterUseCase: CloseCashRegisterUseCase,
     private val getActiveSessionUseCase: GetActiveSessionUseCase,
-    private val cashRegisterRepository: CashRegisterRepository
+    private val cashRegisterRepository: CashRegisterRepository,
+    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     private val _state = MutableStateFlow(CashRegisterState())
     val state: StateFlow<CashRegisterState> = _state.asStateFlow()
