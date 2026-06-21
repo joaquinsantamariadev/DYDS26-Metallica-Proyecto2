@@ -472,15 +472,15 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 - [X] T-19: PosScreen + navegación
 
 ### Fase D — Presentación 3B
-- [ ] T-20: CashRegisterState, CashRegisterEvent
-- [ ] T-21: CashRegisterViewModel
-- [ ] T-22: CashRegisterScreen
-- [ ] T-23: Session guard integrado en PosScreen
+- [X] T-20: CashRegisterState, CashRegisterEvent
+- [X] T-21: CashRegisterViewModel
+- [X] T-22: CashRegisterScreen
+- [X] T-23: Session guard integrado en PosScreen
 
 ### Fase E — Tests
-- [ ] T-24: Fakes (SaleRepositoryFake, CashRegisterRepositoryFake)
-- [ ] T-25: ValidateCartStockUseCaseTest + CalculateCartTotalUseCaseTest
-- [ ] T-26: CompleteSaleUseCaseTest
-- [ ] T-27: OpenCashRegisterUseCaseTest + CloseCashRegisterUseCaseTest
-- [ ] T-28: PosViewModelTest
-- [ ] T-29: CashRegisterViewModelTest
+- [X] T-24: Fakes (SaleRepositoryFake, CashRegisterRepositoryFake)
+- [X] T-25: ValidateCartStockUseCaseTest + CalculateCartTotalUseCaseTest
+- [X] T-26: CompleteSaleUseCaseTest
+- [X] T-27: OpenCashRegisterUseCaseTest + CloseCashRegisterUseCaseTest
+- [X] T-28: PosViewModelTest
+- [X] T-29: CashRegisterViewModelTest

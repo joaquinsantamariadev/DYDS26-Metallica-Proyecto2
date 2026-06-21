@@ -13,4 +13,5 @@ sealed class PosEvent {
     object ClearCart : PosEvent()
     object DismissError : PosEvent()
     object AcknowledgeSale : PosEvent()
+    object RefreshSession : PosEvent()
 }

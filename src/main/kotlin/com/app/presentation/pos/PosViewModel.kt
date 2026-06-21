@@ -19,9 +19,9 @@ class PosViewModel(
     private val getActiveSessionUseCase: GetActiveSessionUseCase,
     private val completeSaleUseCase: CompleteSaleUseCase,
     private val scanProductUseCase: ScanProductUseCase,
-    private val inventoryRepository: InventoryRepository
+    private val inventoryRepository: InventoryRepository,
+    private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ) {
-    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     private val _state = MutableStateFlow(PosState())
     val state: StateFlow<PosState> = _state.asStateFlow()
@@ -43,6 +43,9 @@ class PosViewModel(
             PosEvent.ClearCart -> clearCart()
             PosEvent.DismissError -> _state.update { it.copy(error = null) }
             PosEvent.AcknowledgeSale -> _state.update { it.copy(saleCompleted = false) }
+            PosEvent.RefreshSession -> scope.launch {
+                _state.update { it.copy(activeSession = getActiveSessionUseCase()) }
+            }
         }
     }
 

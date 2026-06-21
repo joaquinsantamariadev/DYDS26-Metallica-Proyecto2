@@ -19,6 +19,7 @@ import com.app.domain.usecase.sale.CompleteSaleUseCase
 import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
 import com.app.presentation.pos.PosViewModel
+import com.app.presentation.pos.cashregister.CashRegisterViewModel
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -63,4 +64,5 @@ val appModule = module {
     factory { InventoryViewModel(get(), get()) }
     factory { CategoryViewModel(get()) }
     factory { PosViewModel(get(), get(), get(), get()) }
+    factory { CashRegisterViewModel(get(), get(), get(), get()) }
 }
