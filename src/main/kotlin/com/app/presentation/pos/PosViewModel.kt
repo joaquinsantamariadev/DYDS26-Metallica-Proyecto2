@@ -4,7 +4,6 @@ import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.SaleItem
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.usecase.ScanProductUseCase
-import com.app.domain.usecase.cart.CalculateCartTotalUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +17,6 @@ import kotlinx.coroutines.launch
 
 class PosViewModel(
     private val getActiveSessionUseCase: GetActiveSessionUseCase,
-    private val calculateCartTotalUseCase: CalculateCartTotalUseCase,
     private val completeSaleUseCase: CompleteSaleUseCase,
     private val scanProductUseCase: ScanProductUseCase,
     private val inventoryRepository: InventoryRepository
@@ -147,7 +145,7 @@ class PosViewModel(
     }
 
     private fun totalOf(items: List<CartItem>): Double =
-        calculateCartTotalUseCase(items.map { it.product.price to it.quantity })
+        items.sumOf { it.product.price * it.quantity }
 
     private fun CartItem.toSaleItem() = SaleItem(
         productId = product.id!!,

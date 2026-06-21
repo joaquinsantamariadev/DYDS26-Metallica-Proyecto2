@@ -11,7 +11,6 @@ import com.app.data.mapper.SaleMapper
 import com.app.data.repository.*
 import com.app.domain.repository.*
 import com.app.domain.usecase.ScanProductUseCase
-import com.app.domain.usecase.cart.CalculateCartTotalUseCase
 import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import com.app.domain.usecase.cashregister.CloseCashRegisterUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
@@ -56,7 +55,6 @@ val appModule = module {
 
     factory { ScanProductUseCase(get(), get()) }
     factory { ValidateCartStockUseCase(get()) }
-    factory { CalculateCartTotalUseCase() }
     factory { CompleteSaleUseCase(get(), get(), get()) }
     factory { GetActiveSessionUseCase(get()) }
     factory { OpenCashRegisterUseCase(get(), get()) }
@@ -64,5 +62,5 @@ val appModule = module {
 
     factory { InventoryViewModel(get(), get()) }
     factory { CategoryViewModel(get()) }
-    factory { PosViewModel(get(), get(), get(), get(), get()) }
+    factory { PosViewModel(get(), get(), get(), get()) }
 }
