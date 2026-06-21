@@ -6,15 +6,15 @@ import com.app.data.local.inventory.ProductTable
 import com.app.data.local.sales.CashRegisterSessionsTable
 import com.app.data.local.sales.SaleItemsTable
 import com.app.data.local.sales.SalesTable
-import com.app.domain.entity.Category
-import com.app.domain.entity.CashRegisterSession
-import com.app.domain.entity.ExchangeRate
-import com.app.domain.entity.PaymentMethod
-import com.app.domain.entity.Product
+import com.app.domain.entity.*
 import com.app.domain.entity.sale.Sale
 import com.app.domain.entity.sale.SaleItem
-import com.app.domain.entity.SessionStatus
 import org.jetbrains.exposed.sql.ResultRow
+import com.app.domain.entity.dashboard.ExpiryAlert
+import com.app.domain.entity.dashboard.RecentSaleEntry
+import com.app.domain.entity.dashboard.StockAlert
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 fun ResultRow.toCategory() = Category(
     id = this[CategoryTable.id],
@@ -64,4 +64,28 @@ fun ResultRow.toCashRegisterSession() = CashRegisterSession(
     openedAt = this[CashRegisterSessionsTable.openedAt],
     closedAt = this[CashRegisterSessionsTable.closedAt],
     status = SessionStatus.valueOf(this[CashRegisterSessionsTable.status])
+)
+
+fun ResultRow.toStockAlert() = StockAlert(
+    productId = this[ProductTable.id].toLong(),
+    productName = this[ProductTable.name],
+    currentStock = this[ProductTable.stock],
+    minStock = this[ProductTable.minStock]
+)
+
+fun ResultRow.toExpiryAlert(): ExpiryAlert {
+    val expiry = this[ProductTable.expiryDate]!!
+    return ExpiryAlert(
+        productId = this[ProductTable.id].toLong(),
+        productName = this[ProductTable.name],
+        expiryDate = expiry,
+        daysRemaining = ChronoUnit.DAYS.between(LocalDate.now(), expiry).toInt()
+    )
+}
+
+fun ResultRow.toRecentSaleEntry(itemCount: Int) = RecentSaleEntry(
+    saleId = this[SalesTable.id].toLong(),
+    dateTime = this[SalesTable.createdAt],
+    itemCount = itemCount,
+    total = this[SalesTable.total]
 )
