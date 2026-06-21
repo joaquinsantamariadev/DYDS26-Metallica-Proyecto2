@@ -1,4 +1,4 @@
-package com.app.domain.usecase.cashregister
+package com.app.domain.usecase.cart
 
 import com.app.domain.repository.InventoryRepository
 

@@ -5,7 +5,7 @@ import com.app.domain.entity.Sale
 import com.app.domain.entity.SaleItem
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.repository.SaleRepository
-import com.app.domain.usecase.cashregister.ValidateCartStockUseCase
+import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import java.time.LocalDateTime
 
 class CompleteSaleUseCase(

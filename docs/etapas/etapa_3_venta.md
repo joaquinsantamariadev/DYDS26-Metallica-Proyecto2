@@ -461,13 +461,13 @@ presentation/App.kt                  ← conectar PosScreen y CashRegisterScreen
 - [X] T-10: CashRegisterLocalDataSource + Impl
 - [X] T-11: SaleMapper + SaleItemMapper
 - [X] T-12: CashRegisterMapper
-- [X] T-13: SaleRepositoryImpl
+- [X] T-13: SaleRepositoryImpl 
 - [X] T-14: CashRegisterRepositoryImpl
 - [X] T-15: AppModules.kt (DI)
 
 ### Fase C — Presentación 3A
-- [ ] T-16: PosState, PosEvent, CartItem
-- [ ] T-17: PosViewModel
+- [X] T-16: PosState, PosEvent, CartItem
+- [X] T-17: PosViewModel
 - [ ] T-18: Componentes (ProductSearchPanel, CartPanel, PaymentDialog)
 - [ ] T-19: PosScreen + navegación
 
