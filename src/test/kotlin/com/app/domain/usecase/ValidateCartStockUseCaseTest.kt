@@ -31,6 +31,7 @@ class ValidateCartStockUseCaseTest {
 
         assertTrue(result.isFailure)
         assertNotNull(result.exceptionOrNull())
+        Unit
     }
 
     @Test

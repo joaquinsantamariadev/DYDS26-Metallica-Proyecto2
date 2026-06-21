@@ -5,6 +5,7 @@ import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
 import com.app.domain.usecase.cashregister.OpenCashRegisterUseCase
 import com.app.fakes.CashRegisterRepositoryFake
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlin.test.Test
 import kotlin.test.assertNotNull
@@ -18,6 +19,7 @@ class CashRegisterViewModelTest {
     private val openUseCase = OpenCashRegisterUseCase(getActive, repo)
     private val closeUseCase = CloseCashRegisterUseCase(getActive, repo)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun buildViewModel() = CashRegisterViewModel(
         openCashRegisterUseCase = openUseCase,
         closeCashRegisterUseCase = closeUseCase,

@@ -13,6 +13,7 @@ import com.app.domain.usecase.sale.CompleteSaleUseCase
 import com.app.fakes.CashRegisterRepositoryFake
 import com.app.fakes.SaleRepositoryFake
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import java.time.LocalDateTime
 import kotlin.test.*
@@ -29,6 +30,7 @@ class PosViewModelTest {
     private val getActiveSession = GetActiveSessionUseCase(cashRegisterRepo)
     private val scanProduct = ScanProductUseCase(inventoryRepo, com.app.data.FakeProductExternalSource())
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun buildViewModel() = PosViewModel(
         getActiveSessionUseCase = getActiveSession,
         calculateCartTotalUseCase = calculateTotal,
