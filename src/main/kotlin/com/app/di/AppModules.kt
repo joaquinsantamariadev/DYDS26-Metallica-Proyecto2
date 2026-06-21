@@ -13,6 +13,7 @@ import com.app.domain.usecase.dashboard.GetExpiryAlertsUseCase
 import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
 import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
+import com.app.presentation.dashboard.DashboardViewModel
 import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
 import com.app.presentation.pos.PosViewModel
@@ -62,5 +63,5 @@ val appModule = module {
     factory { GetLowStockAlertsUseCase(get()) }
     factory { GetExpiryAlertsUseCase(get()) }
     factory { GetRecentSalesUseCase(get()) }
-
+    factory { DashboardViewModel(get(), get(), get(), get()) }
 }

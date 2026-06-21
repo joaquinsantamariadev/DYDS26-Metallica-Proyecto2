@@ -12,13 +12,17 @@ import com.app.presentation.pos.PosViewModel
 import com.app.presentation.reports.ReportsScreen
 import com.app.presentation.settings.SettingsScreen
 import com.app.presentation.pos.cashregister.CashRegisterViewModel
+import com.app.presentation.dashboard.DashboardViewModel
 import org.koin.java.KoinJavaComponent.get
 
 @Composable
 fun NavigationHost(currentScreen: Screen, modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize()) {
         when (currentScreen) {
-            is Screen.Dashboard -> DashboardScreen()
+            is Screen.Dashboard -> {
+                val viewModel = get<DashboardViewModel>(DashboardViewModel::class.java)
+                DashboardScreen(viewModel)
+            }
             is Screen.Inventory -> {
                 val viewModel = get<InventoryViewModel>(InventoryViewModel::class.java)
                 InventoryScreen(viewModel)
