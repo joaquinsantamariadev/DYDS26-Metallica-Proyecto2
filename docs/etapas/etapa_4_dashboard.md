@@ -324,13 +324,13 @@ repositorio, en el data source ni en la UI.
 - [X] 4C-1 Bindings de Koin registrados (repo, use cases, ViewModel)
 
 ### Fase D — Presentación
-- [ ] 4D-1 `DashboardUiState` definido
-- [ ] 4D-2 `DashboardViewModel` con carga paralela y `refresh()`
-- [ ] 4D-3 Sub-composables: `KpiCard`, `StockAlertsPanel`, `ExpiryAlertsPanel`,
+- [X] 4D-1 `DashboardUiState` definido
+- [X] 4D-2 `DashboardViewModel` con carga paralela y `refresh()`
+- [X] 4D-3 Sub-composables: `KpiCard`, `StockAlertsPanel`, `ExpiryAlertsPanel`,
   `RecentActivityPanel`
-- [ ] 4D-4 `DashboardScreen` integrado en `App.kt`
+- [X] 4D-4 `DashboardScreen` integrado en `App.kt`
 
 ### Fase E — Tests
-- [ ] 4E-1 `DashboardRepositoryFake` en archivo propio
-- [ ] 4E-2 Tests de los 4 casos de uso (éxito + error)
-- [ ] 4E-3 `DashboardViewModelTest` (estado inicial, carga, error, refresh)
+- [X] 4E-1 `DashboardRepositoryFake` en archivo propio
+- [X] 4E-2 Tests de los 4 casos de uso (éxito + error)
+- [X] 4E-3 `DashboardViewModelTest` (estado inicial, carga, error, refresh)

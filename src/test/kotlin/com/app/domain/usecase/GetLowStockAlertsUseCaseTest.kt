@@ -1,8 +1,8 @@
 package com.app.domain.usecase
 
 import com.app.domain.entity.dashboard.StockAlert
-import com.app.data.DashboardRepositoryFake
 import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
+import com.app.presentation.dashboard.DashboardRepositoryFake
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -21,7 +21,7 @@ class GetLowStockAlertsUseCaseTest {
     }
 
     @Test
-    fun propagatesExceptionWhenRepositoryThrows() = runBlocking {
+    fun propagatesExceptionWhenRepositoryThrows() = runBlocking<Unit> {
         repo.shouldThrowError = true
 
         assertFailsWith<Exception> { useCase() }
