@@ -8,6 +8,10 @@ import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import com.app.domain.usecase.cashregister.CloseCashRegisterUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
 import com.app.domain.usecase.cashregister.OpenCashRegisterUseCase
+import com.app.domain.usecase.dashboard.GetDashboardMetricsUseCase
+import com.app.domain.usecase.dashboard.GetExpiryAlertsUseCase
+import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
+import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
 import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
@@ -51,4 +55,12 @@ val appModule = module {
     factory { CategoryViewModel(get()) }
     factory { PosViewModel(get(), get(), get(), get()) }
     factory { CashRegisterViewModel(get(), get(), get(), get()) }
+
+    single<DashboardRepository> { DashboardRepositoryImpl() }
+
+    factory { GetDashboardMetricsUseCase(get()) }
+    factory { GetLowStockAlertsUseCase(get()) }
+    factory { GetExpiryAlertsUseCase(get()) }
+    factory { GetRecentSalesUseCase(get()) }
+
 }

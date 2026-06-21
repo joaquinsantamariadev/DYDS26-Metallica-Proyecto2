@@ -317,11 +317,11 @@ repositorio, en el data source ni en la UI.
 - [X] 4A-3 Clases de los 4 casos de uso implementadas con constantes de negocio
 
 ### Fase B — Datos
-- [ ] 4B-1 `DashboardRepositoryImpl` con queries Exposed implementado
-- [ ] 4B-2 Funciones de extensión en `Mappers.kt` agregadas
+- [X] 4B-1 `DashboardRepositoryImpl` con queries Exposed implementado
+- [X] 4B-2 Funciones de extensión en `Mappers.kt` agregadas
 
 ### Fase C — DI
-- [ ] 4C-1 Bindings de Koin registrados (repo, use cases, ViewModel)
+- [X] 4C-1 Bindings de Koin registrados (repo, use cases, ViewModel)
 
 ### Fase D — Presentación
 - [ ] 4D-1 `DashboardUiState` definido
