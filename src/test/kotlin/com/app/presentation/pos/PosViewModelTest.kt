@@ -6,7 +6,6 @@ import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.Product
 import com.app.domain.entity.SessionStatus
 import com.app.domain.usecase.ScanProductUseCase
-import com.app.domain.usecase.cart.CalculateCartTotalUseCase
 import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
@@ -25,7 +24,6 @@ class PosViewModelTest {
     private val cashRegisterRepo = CashRegisterRepositoryFake()
 
     private val validateStock = ValidateCartStockUseCase(inventoryRepo)
-    private val calculateTotal = CalculateCartTotalUseCase()
     private val completeSale = CompleteSaleUseCase(validateStock, inventoryRepo, saleRepo)
     private val getActiveSession = GetActiveSessionUseCase(cashRegisterRepo)
     private val scanProduct = ScanProductUseCase(inventoryRepo, com.app.data.FakeProductExternalSource())
@@ -33,7 +31,6 @@ class PosViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun buildViewModel() = PosViewModel(
         getActiveSessionUseCase = getActiveSession,
-        calculateCartTotalUseCase = calculateTotal,
         completeSaleUseCase = completeSale,
         scanProductUseCase = scanProduct,
         inventoryRepository = inventoryRepo,
