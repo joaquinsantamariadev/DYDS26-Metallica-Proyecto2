@@ -1,7 +1,7 @@
 package com.app.data.repository
 
 import com.app.data.local.sales.CashRegisterLocalDataSource
-import com.app.data.mapper.CashRegisterMapper
+import com.app.data.mapper.toCashRegisterSession
 import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.SessionStatus
 import com.app.domain.repository.CashRegisterRepository
@@ -9,12 +9,11 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 
 class CashRegisterRepositoryImpl(
-    private val dataSource: CashRegisterLocalDataSource,
-    private val mapper: CashRegisterMapper
+    private val dataSource: CashRegisterLocalDataSource
 ) : CashRegisterRepository {
     override suspend fun open(openingAmount: Double): CashRegisterSession = transaction {
         val id = dataSource.insertSession(openingAmount, LocalDateTime.now())
-        mapper.map(dataSource.getSessionById(id)!!)
+        dataSource.getSessionById(id)!!.toCashRegisterSession()
     }
 
     override suspend fun close(sessionId: Int, closingAmount: Double): CashRegisterSession = transaction {
@@ -24,14 +23,14 @@ class CashRegisterRepositoryImpl(
             closedAt = LocalDateTime.now(),
             status = SessionStatus.CLOSED.name
         )
-        mapper.map(dataSource.getSessionById(sessionId)!!)
+        dataSource.getSessionById(sessionId)!!.toCashRegisterSession()
     }
 
     override suspend fun getActive(): CashRegisterSession? = transaction {
-        dataSource.getActiveSession()?.let { mapper.map(it) }
+        dataSource.getActiveSession()?.toCashRegisterSession()
     }
 
     override suspend fun getAll(): List<CashRegisterSession> = transaction {
-        dataSource.getAllSessions().map { mapper.map(it) }
+        dataSource.getAllSessions().map { it.toCashRegisterSession() }
     }
 }

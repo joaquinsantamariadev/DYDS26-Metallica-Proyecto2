@@ -5,9 +5,6 @@ import com.app.data.local.sales.CashRegisterLocalDataSource
 import com.app.data.local.sales.CashRegisterLocalDataSourceImpl
 import com.app.data.local.sales.SaleLocalDataSource
 import com.app.data.local.sales.SaleLocalDataSourceImpl
-import com.app.data.mapper.CashRegisterMapper
-import com.app.data.mapper.SaleItemMapper
-import com.app.data.mapper.SaleMapper
 import com.app.data.repository.*
 import com.app.domain.repository.*
 import com.app.domain.usecase.ScanProductUseCase
@@ -47,12 +44,8 @@ val appModule = module {
     single<SaleLocalDataSource> { SaleLocalDataSourceImpl() }
     single<CashRegisterLocalDataSource> { CashRegisterLocalDataSourceImpl() }
 
-    single { SaleItemMapper() }
-    single { SaleMapper(get()) }
-    single { CashRegisterMapper() }
-
-    single<SaleRepository> { SaleRepositoryImpl(get(), get()) }
-    single<CashRegisterRepository> { CashRegisterRepositoryImpl(get(), get()) }
+    single<SaleRepository> { SaleRepositoryImpl(get()) }
+    single<CashRegisterRepository> { CashRegisterRepositoryImpl(get()) }
 
     factory { ScanProductUseCase(get(), get()) }
     factory { ValidateCartStockUseCase(get()) }

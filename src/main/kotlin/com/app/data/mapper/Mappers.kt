@@ -3,9 +3,17 @@ package com.app.data.mapper
 import com.app.data.local.inventory.CategoryTable
 import com.app.data.local.inventory.ExchangeRateTable
 import com.app.data.local.inventory.ProductTable
+import com.app.data.local.sales.CashRegisterSessionsTable
+import com.app.data.local.sales.SaleItemsTable
+import com.app.data.local.sales.SalesTable
 import com.app.domain.entity.Category
+import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.ExchangeRate
+import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.Product
+import com.app.domain.entity.Sale
+import com.app.domain.entity.SaleItem
+import com.app.domain.entity.SessionStatus
 import org.jetbrains.exposed.sql.ResultRow
 
 fun ResultRow.toCategory() = Category(
@@ -29,4 +37,31 @@ fun ResultRow.toExchangeRate() = ExchangeRate(
     currencyPair = this[ExchangeRateTable.currencyPair],
     rate = this[ExchangeRateTable.rate],
     lastUpdated = this[ExchangeRateTable.lastUpdated]
+)
+
+fun ResultRow.toSaleItem() = SaleItem(
+    id = this[SaleItemsTable.id],
+    productId = this[SaleItemsTable.productId],
+    productName = this[SaleItemsTable.productName],
+    unitPrice = this[SaleItemsTable.unitPrice],
+    quantity = this[SaleItemsTable.quantity],
+    subtotal = this[SaleItemsTable.subtotal]
+)
+
+fun ResultRow.toSale(itemRows: List<ResultRow>) = Sale(
+    id = this[SalesTable.id],
+    sessionId = this[SalesTable.sessionId],
+    items = itemRows.map { it.toSaleItem() },
+    total = this[SalesTable.total],
+    paymentMethod = PaymentMethod.valueOf(this[SalesTable.paymentMethod]),
+    createdAt = this[SalesTable.createdAt]
+)
+
+fun ResultRow.toCashRegisterSession() = CashRegisterSession(
+    id = this[CashRegisterSessionsTable.id],
+    openingAmount = this[CashRegisterSessionsTable.openingAmount],
+    closingAmount = this[CashRegisterSessionsTable.closingAmount],
+    openedAt = this[CashRegisterSessionsTable.openedAt],
+    closedAt = this[CashRegisterSessionsTable.closedAt],
+    status = SessionStatus.valueOf(this[CashRegisterSessionsTable.status])
 )
