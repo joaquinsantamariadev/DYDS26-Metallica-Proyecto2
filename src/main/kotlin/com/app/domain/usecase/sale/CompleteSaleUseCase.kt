@@ -1,8 +1,8 @@
 package com.app.domain.usecase.sale
 
 import com.app.domain.entity.PaymentMethod
-import com.app.domain.entity.Sale
-import com.app.domain.entity.SaleItem
+import com.app.domain.entity.sale.Sale
+import com.app.domain.entity.sale.SaleItem
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.repository.SaleRepository
 import com.app.domain.usecase.cart.ValidateCartStockUseCase

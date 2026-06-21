@@ -1,5 +1,6 @@
-package com.app.domain.entity
+package com.app.domain.entity.sale
 
+import com.app.domain.entity.PaymentMethod
 import java.time.LocalDateTime
 
 data class Sale(

@@ -1,6 +1,6 @@
 package com.app.fakes
 
-import com.app.domain.entity.Sale
+import com.app.domain.entity.sale.Sale
 import com.app.domain.repository.SaleRepository
 
 class SaleRepositoryFake : SaleRepository {

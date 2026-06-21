@@ -1,4 +1,4 @@
-package com.app.domain.entity
+package com.app.domain.entity.sale
 
 data class SaleItem(
     val id: Int? = null,

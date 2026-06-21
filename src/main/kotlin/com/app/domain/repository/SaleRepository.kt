@@ -1,6 +1,6 @@
 package com.app.domain.repository
 
-import com.app.domain.entity.Sale
+import com.app.domain.entity.sale.Sale
 
 interface SaleRepository {
     suspend fun save(sale: Sale): Sale

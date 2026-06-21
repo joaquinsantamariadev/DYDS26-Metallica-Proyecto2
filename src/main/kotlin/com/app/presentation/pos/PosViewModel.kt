@@ -1,7 +1,7 @@
 package com.app.presentation.pos
 
 import com.app.domain.entity.PaymentMethod
-import com.app.domain.entity.SaleItem
+import com.app.domain.entity.sale.SaleItem
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.usecase.ScanProductUseCase
 import com.app.domain.usecase.cashregister.GetActiveSessionUseCase

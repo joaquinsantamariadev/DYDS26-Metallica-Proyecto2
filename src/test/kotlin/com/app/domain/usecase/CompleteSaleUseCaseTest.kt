@@ -2,7 +2,7 @@ package com.app.domain.usecase
 
 import com.app.data.FakeInventoryRepository
 import com.app.domain.entity.PaymentMethod
-import com.app.domain.entity.SaleItem
+import com.app.domain.entity.sale.SaleItem
 import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
 import com.app.fakes.SaleRepositoryFake

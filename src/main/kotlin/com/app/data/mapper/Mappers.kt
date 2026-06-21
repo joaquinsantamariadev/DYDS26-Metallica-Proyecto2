@@ -11,8 +11,8 @@ import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.ExchangeRate
 import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.Product
-import com.app.domain.entity.Sale
-import com.app.domain.entity.SaleItem
+import com.app.domain.entity.sale.Sale
+import com.app.domain.entity.sale.SaleItem
 import com.app.domain.entity.SessionStatus
 import org.jetbrains.exposed.sql.ResultRow
 

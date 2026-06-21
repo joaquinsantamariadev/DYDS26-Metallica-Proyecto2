@@ -3,7 +3,7 @@ package com.app.data.repository
 import com.app.data.local.sales.SaleItemsTable
 import com.app.data.local.sales.SalesTable
 import com.app.data.mapper.toSale
-import com.app.domain.entity.Sale
+import com.app.domain.entity.sale.Sale
 import com.app.domain.repository.SaleRepository
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
