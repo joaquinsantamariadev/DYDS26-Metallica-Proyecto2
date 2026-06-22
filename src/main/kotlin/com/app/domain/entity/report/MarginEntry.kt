@@ -1,4 +1,4 @@
-package com.app.domain.entity.reports
+package com.app.domain.entity.report
 
 data class MarginEntry(
     val productId: Long,

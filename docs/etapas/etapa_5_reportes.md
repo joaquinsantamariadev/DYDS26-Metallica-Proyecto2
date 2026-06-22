@@ -67,20 +67,15 @@ Declarar los cuatro contratos en `domain/repository/ReportsRepository.kt`:
 `getMargins()` no recibe filtros de fecha porque los márgenes reflejan precios actuales
 y no dependen del período.
 
-**Tarea 5A-5 — Interfaces de casos de uso**
-Declarar una interfaz por caso de uso en `domain/usecase/`:
-`GetTransactionHistoryUseCase`, `GetRevenueSummaryUseCase`,
-`GetProductRotationUseCase`, `GetMarginsUseCase`.
+**Tarea 5A-5 — Implementaciones de casos de uso**
+Implementar las cuatro clases directamente en `domain/usecase/`, sin interfaz separada,
+consistente con la convención del proyecto.
+Las constantes de negocio se definen en `companion object` de cada clase:
 
-**Tarea 5A-6 — Implementaciones de casos de uso**
-Implementar las cuatro clases en `domain/usecase/impl/`.
-Las constantes de negocio se definen aquí:
-
-| Constante              | Valor | Descripción                                         |
-|------------------------|-------|-----------------------------------------------------|
-| `HISTORY_PAGE_SIZE`    | `50`  | Registros por página en el historial                |
-| `ROTATION_TOP_N`       | `20`  | Cantidad de productos en el ranking de rotación     |
-| `DEFAULT_PERIOD_MONTHS`| `6`   | Meses hacia atrás para los filtros por defecto      |
+| Constante              | Valor | Clase                             |
+|------------------------|-------|-----------------------------------|
+| `HISTORY_PAGE_SIZE`    | `50`  | `GetTransactionHistoryUseCase`    |
+| `ROTATION_TOP_N`       | `20`  | `GetProductRotationUseCase`       |
 
 `GetTransactionHistoryUseCase` recibe `filters` y el número de página; calcula
 `offset = page * HISTORY_PAGE_SIZE` antes de llamar al repositorio.
@@ -284,7 +279,7 @@ data class TransactionHistoryEntry(
 ```kotlin
 // domain/entity/RevenueDataPoint.kt
 data class RevenueDataPoint(
-    val periodLabel: String,   // "Ene 2025", "Sem 3", "15/01", etc.
+    val periodLabel: String,
     val revenue: Double,
     val salesCount: Int
 )
@@ -343,7 +338,6 @@ interface ReportsRepository {
 ### Carga en Paralelo en StatisticsViewModel
 
 ```kotlin
-// Esquema — adaptar al ViewModel real
 private fun loadStatistics(filters: ReportFilters) {
     viewModelScope.launch {
         _uiState.update { it.copy(isLoadingRevenue = true, isLoadingRotation = true) }
@@ -392,10 +386,6 @@ domain/usecase/GetTransactionHistoryUseCase.kt
 domain/usecase/GetRevenueSummaryUseCase.kt
 domain/usecase/GetProductRotationUseCase.kt
 domain/usecase/GetMarginsUseCase.kt
-domain/usecase/impl/GetTransactionHistoryUseCaseImpl.kt
-domain/usecase/impl/GetRevenueSummaryUseCaseImpl.kt
-domain/usecase/impl/GetProductRotationUseCaseImpl.kt
-domain/usecase/impl/GetMarginsUseCaseImpl.kt
 ```
 
 ### Nuevos — Data
@@ -469,6 +459,10 @@ Se usan dos ViewModels en lugar de uno unificado porque sus responsabilidades di
 gestiona carga paralela de agregados y filtros de período. Unificarlos generaría un estado
 compuesto grande y tests con excesivo setup.
 
+### Use cases sin interfaz
+Los casos de uso de esta etapa siguen la convención del resto del proyecto: clases concretas
+sin interfaz separada, inyectadas directamente en los ViewModels vía Koin.
+
 ---
 
 ## 7. Criterios de Éxito
@@ -495,12 +489,12 @@ compuesto grande y tests con excesivo setup.
 ## 8. Checklist de Progreso
 
 ### Fase A — Dominio
-- [ ] 5A-1 `ReportFilters` y `ReportPeriod` con `default()` definidos
-- [ ] 5A-2 `TransactionHistoryEntry` y `TransactionItemDetail` definidos
-- [ ] 5A-3 `RevenueSummary`, `RevenueDataPoint`, `ProductRotationEntry`, `MarginEntry` definidos
-- [ ] 5A-4 Interfaz `ReportsRepository` declarada
-- [ ] 5A-5 Interfaces de los 4 casos de uso declaradas
-- [ ] 5A-6 Implementaciones de los 4 casos de uso con constantes de negocio
+- [X] 5A-1 `ReportFilters` y `ReportPeriod` con `default()` definidos
+- [X] 5A-2 `TransactionHistoryEntry` y `TransactionItemDetail` definidos
+- [X] 5A-3 `RevenueSummary`, `RevenueDataPoint`, `ProductRotationEntry`, `MarginEntry` definidos
+- [X] 5A-4 Interfaz `ReportsRepository` declarada
+- [X] 5A-5 `GetTransactionHistoryUseCase`, `GetRevenueSummaryUseCase`,
+  `GetProductRotationUseCase`, `GetMarginsUseCase` implementados
 
 ### Fase B — Datos
 - [ ] 5B-1 Interfaz `ReportsLocalDataSource` declarada
