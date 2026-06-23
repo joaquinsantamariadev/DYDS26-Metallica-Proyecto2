@@ -13,11 +13,13 @@ import com.app.domain.usecase.dashboard.GetExpiryAlertsUseCase
 import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
 import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
+import com.app.domain.usecase.settings.*
 import com.app.presentation.dashboard.DashboardViewModel
 import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
 import com.app.presentation.pos.PosViewModel
 import com.app.presentation.pos.cashregister.CashRegisterViewModel
+import com.app.presentation.settings.SettingsViewModel
 import com.app.presentation.reports.StatisticsViewModel
 import com.app.presentation.reports.TransactionHistoryViewModel
 import com.app.domain.usecase.report.GetMarginsUseCase
@@ -51,6 +53,8 @@ val appModule = module {
 
     single<SaleRepository> { SaleRepositoryImpl() }
     single<CashRegisterRepository> { CashRegisterRepositoryImpl() }
+    single<SettingsRepository> { SettingsRepositoryImpl() }
+    single<ExportRepository> { ExportRepositoryImpl() }
 
     factory { ScanProductUseCase(get(), get()) }
     factory { ValidateCartStockUseCase(get()) }
@@ -59,10 +63,17 @@ val appModule = module {
     factory { OpenCashRegisterUseCase(get(), get()) }
     factory { CloseCashRegisterUseCase(get(), get()) }
 
+    factory { GetStoreSettingsUseCase(get()) }
+    factory { GetSystemSettingsUseCase(get()) }
+    factory { SaveStoreSettingsUseCase(get()) }
+    factory { SaveSystemSettingsUseCase(get()) }
+    factory { ExportDataUseCase(get()) }
+
     factory { InventoryViewModel(get(), get()) }
     factory { CategoryViewModel(get()) }
     factory { PosViewModel(get(), get(), get(), get()) }
     factory { CashRegisterViewModel(get(), get(), get(), get()) }
+    factory { SettingsViewModel(get(), get(), get(), get(), get()) }
 
     single<DashboardRepository> { DashboardRepositoryImpl() }
 

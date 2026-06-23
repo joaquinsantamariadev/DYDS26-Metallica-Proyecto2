@@ -335,7 +335,7 @@ estándar en proyectos Compose Desktop.
 - [X] 6B-4 Mappers de extensión en `Mappers.kt`
 
 ### Fase C — DI
-- [ ] 6C-1 Bindings Koin registrados (repos, use cases, ViewModel)
+- [X] 6C-1 Bindings Koin registrados (repos, use cases, ViewModel)
 
 ### Fase D — Presentación
 - [ ] 6D-1 `SettingsUiState` definido
