@@ -98,7 +98,7 @@ class ReportsRepositoryImpl : ReportsRepository {
             .join(SalesTable, JoinType.INNER, SaleItemsTable.saleId, SalesTable.id)
             .join(ProductTable, JoinType.LEFT, SaleItemsTable.productId, ProductTable.id)
             .join(CategoryTable, JoinType.LEFT, ProductTable.categoryId, CategoryTable.id)
-            .select(SaleItemsTable.productId, SaleItemsTable.productName, CategoryTable.name, unitsSold, revenueSum)
+            .select(SaleItemsTable.productId, SaleItemsTable.productName, CategoryTable.name, ProductTable.categoryId, unitsSold, revenueSum)
             .where { SalesTable.createdAt.between(from, to) }
             .groupBy(SaleItemsTable.productId, SaleItemsTable.productName)
             .orderBy(unitsSold to SortOrder.DESC)

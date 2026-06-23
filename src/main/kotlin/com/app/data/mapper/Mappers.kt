@@ -93,6 +93,32 @@ fun ResultRow.toRecentSaleEntry(itemCount: Int) = RecentSaleEntry(
     total = this[SalesTable.total]
 )
 
+fun ResultRow.toProductCsvMap() = mapOf(
+    "id" to this[ProductTable.id].toString(),
+    "barcode" to (this[ProductTable.barcode] ?: ""),
+    "name" to this[ProductTable.name].replace(",", ""),
+    "categoryId" to (this[ProductTable.categoryId]?.toString() ?: ""),
+    "price" to this[ProductTable.price].toString(),
+    "cost" to this[ProductTable.cost].toString(),
+    "stock" to this[ProductTable.stock].toString(),
+    "minStock" to this[ProductTable.minStock].toString(),
+    "imageUrl" to (this[ProductTable.imageUrl] ?: ""),
+    "expiryDate" to (this[ProductTable.expiryDate]?.toString() ?: "")
+)
+
+fun ResultRow.toSaleCsvMap() = mapOf(
+    "id" to this[SalesTable.id].toString(),
+    "sessionId" to this[SalesTable.sessionId].toString(),
+    "total" to this[SalesTable.total].toString(),
+    "paymentMethod" to this[SalesTable.paymentMethod].toString(),
+    "createdAt" to this[SalesTable.createdAt].toString()
+)
+
+fun ResultRow.toCategoryCsvMap() = mapOf(
+    "id" to this[CategoryTable.id].toString(),
+    "name" to this[CategoryTable.name].replace(",", "")
+)
+
 fun Iterable<ResultRow>.toSettingsMap() = associate {
     it[SettingsTable.key] to it[SettingsTable.value]
 }

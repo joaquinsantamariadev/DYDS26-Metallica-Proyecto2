@@ -14,7 +14,7 @@ import java.io.File
 
 object DatabaseFactory {
     fun init() {
-        val dbFile = File("stock_control.db")
+        val dbFile = File(System.getProperty("user.dir"), "stock_control.db")
         Database.connect(
             url = "jdbc:sqlite:${dbFile.absolutePath}",
             driver = "org.sqlite.JDBC"
