@@ -1,8 +1,8 @@
 package com.app.domain.usecase
 
+import com.app.data.DashboardRepositoryFake
 import com.app.domain.entity.dashboard.DashboardMetrics
 import com.app.domain.usecase.dashboard.GetDashboardMetricsUseCase
-import com.app.presentation.dashboard.DashboardRepositoryFake
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals

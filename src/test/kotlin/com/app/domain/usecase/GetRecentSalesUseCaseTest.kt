@@ -1,8 +1,8 @@
 package com.app.domain.usecase
 
+import com.app.data.DashboardRepositoryFake
 import com.app.domain.entity.dashboard.RecentSaleEntry
 import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
-import com.app.presentation.dashboard.DashboardRepositoryFake
 import kotlinx.coroutines.runBlocking
 import java.time.LocalDateTime
 import kotlin.test.Test

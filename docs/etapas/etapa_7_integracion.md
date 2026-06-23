@@ -228,24 +228,24 @@ no en el ViewModel ni en el use case. Es una transformación de presentación pu
 - [X] 7A-2 `GetExchangeRateUseCase` implementado
 
 ### Fase B — Datos
-- [ ] 7B-1 `ExchangeRateResponse` DTO con `@Serializable`
-- [ ] 7B-2 `ExchangeRateRemoteDataSource` con Ktor
-- [ ] 7B-3 Mapper `ExchangeRateResponse.toExchangeRate()` en `Mappers.kt`
-- [ ] 7B-4 `ExchangeRateRepositoryImpl` implementado
+- [X] 7B-1 `ExchangeRateResponse` DTO con `@Serializable`
+- [X] 7B-2 `ExchangeRateRemoteDataSource` con Ktor
+- [X] 7B-3 Mapper `ExchangeRateResponse.toExchangeRate()` en `Mappers.kt`
+- [X] 7B-4 `ExchangeRateRepositoryImpl` implementado
 
 ### Fase C — DI
-- [ ] 7C-1 Bindings Koin registrados
+- [X] 7C-1 Bindings Koin registrados
 
 ### Fase D — Presentación
-- [ ] 7D-1 `DashboardUiState` actualizado
-- [ ] 7D-2 `DashboardViewModel` actualizado
-- [ ] 7D-3 `ExchangeRateWidget` creado
-- [ ] 7D-4 `DashboardScreen` integra widget
-- [ ] 7D-5 `InventoryUiState` actualizado
-- [ ] 7D-6 `InventoryViewModel` actualizado
-- [ ] 7D-7 Lista de productos muestra precio en USD
+- [X] 7D-1 `DashboardUiState` actualizado
+- [X] 7D-2 `DashboardViewModel` actualizado
+- [X] 7D-3 `ExchangeRateWidget` creado
+- [X] 7D-4 `DashboardScreen` integra widget
+- [X] 7D-5 `InventoryUiState` actualizado
+- [X] 7D-6 `InventoryViewModel` actualizado
+- [X] 7D-7 Lista de productos muestra precio en USD
 
 ### Fase E — Tests
-- [ ] 7E-1 `ExchangeRateRepositoryFake` creado
-- [ ] 7E-2 `GetExchangeRateUseCaseTest` con éxito y error
-- [ ] 7E-3 `DashboardViewModelTest` actualizado con casos de cotización
+- [X] 7E-1 `ExchangeRateRepositoryFake` creado
+- [X] 7E-2 `GetExchangeRateUseCaseTest` con éxito y error
+- [X] 7E-3 `DashboardViewModelTest` actualizado con casos de cotización

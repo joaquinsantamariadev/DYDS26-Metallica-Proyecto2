@@ -51,7 +51,7 @@ fun DashboardScreen(
                 )
                 KpiCard(
                     title = "Valor inventario",
-                    value = metrics?.let { "${"%.2f".format(it.inventoryValue)}" } ?: "-",
+                    value = metrics?.let { "%.2f".format(it.inventoryValue) } ?: "-",
                     icon = Icons.Default.ShoppingCart
                 )
                 KpiCard(
