@@ -224,9 +224,8 @@ no en el ViewModel ni en el use case. Es una transformación de presentación pu
 ## 8. Checklist de Progreso
 
 ### Fase A — Dominio
-- [ ] 7A-1 `ExchangeRate` entity definida
-- [ ] 7A-2 Interfaz `ExchangeRateRepository` declarada
-- [ ] 7A-3 `GetExchangeRateUseCase` implementado
+- [X] 7A-1 Interfaz `ExchangeRateRepository` declarada
+- [X] 7A-2 `GetExchangeRateUseCase` implementado
 
 ### Fase B — Datos
 - [ ] 7B-1 `ExchangeRateResponse` DTO con `@Serializable`
