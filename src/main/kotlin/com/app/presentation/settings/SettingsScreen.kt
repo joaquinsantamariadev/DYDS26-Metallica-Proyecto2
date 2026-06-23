@@ -1,37 +1,36 @@
 package com.app.presentation.settings
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.app.presentation.settings.SettingsViewModel
 
 @Composable
-fun SettingsScreen() {
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                imageVector = Icons.Default.Settings,
-                contentDescription = null,
-                modifier = Modifier.size(64.dp),
-                tint = MaterialTheme.colors.primary
+fun SettingsScreen(viewModel: SettingsViewModel) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        if (uiState.isLoading) {
+            CircularProgressIndicator()
+        } else {
+            StoreSettingsForm(
+                settings = uiState.storeSettings,
+                onSave = { viewModel.saveStoreSettings(it) }
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Configuración",
-                style = MaterialTheme.typography.h5,
-                color = MaterialTheme.colors.onBackground
+            Divider()
+            SystemSettingsForm(
+                settings = uiState.systemSettings,
+                onSave = { viewModel.saveSystemSettings(it) }
             )
+            Divider()
+            ExportPanel(
+                onExport = { path, format -> viewModel.exportData(path, format) }
+            )
+            if (uiState.errorMessage != null) {
+                Text(text = uiState.errorMessage!!, color = MaterialTheme.colors.error)
+            }
         }
     }
 }

@@ -339,9 +339,9 @@ estándar en proyectos Compose Desktop.
 
 ### Fase D — Presentación
 - [X] 6D-1 `SettingsUiState` definido
-- [ ] 6D-2 `SettingsViewModel` con carga, guardado y exportación
-- [ ] 6D-3 Sub-composables: `StoreSettingsForm`, `SystemSettingsForm`, `ExportPanel`
-- [ ] 6D-4 `SettingsScreen` reemplaza placeholder e integrado en navegación
+- [X] 6D-2 `SettingsViewModel` con carga, guardado y exportación
+- [X] 6D-3 Sub-composables: `StoreSettingsForm`, `SystemSettingsForm`, `ExportPanel`
+- [X] 6D-4 `SettingsScreen` reemplaza placeholder e integrado en navegación
 
 ### Fase E — Tests
 - [ ] 6E-1 `SettingsRepositoryFake` y `ExportRepositoryFake` en archivos propios

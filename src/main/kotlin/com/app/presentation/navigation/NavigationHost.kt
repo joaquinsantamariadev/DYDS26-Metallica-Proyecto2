@@ -11,6 +11,7 @@ import com.app.presentation.pos.PosScreen
 import com.app.presentation.pos.PosViewModel
 import com.app.presentation.reports.ReportsScreen
 import com.app.presentation.settings.SettingsScreen
+import com.app.presentation.settings.SettingsViewModel
 import com.app.presentation.pos.cashregister.CashRegisterViewModel
 import com.app.presentation.dashboard.DashboardViewModel
 import org.koin.java.KoinJavaComponent.get
@@ -33,7 +34,10 @@ fun NavigationHost(currentScreen: Screen, modifier: Modifier = Modifier) {
                 PosScreen(viewModel, cashRegisterViewModel)
             }
             is Screen.Reports -> ReportsScreen()
-            is Screen.Settings -> SettingsScreen()
+            is Screen.Settings -> {
+                val viewModel = get<SettingsViewModel>(SettingsViewModel::class.java)
+                SettingsScreen(viewModel)
+            }
         }
     }
 }
