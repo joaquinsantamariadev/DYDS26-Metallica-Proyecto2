@@ -326,7 +326,7 @@ estándar en proyectos Compose Desktop.
 - [X] 6A-1 `StoreSettings`, `SystemSettings`, `ExportFormat` definidos
 - [X] 6A-2 Interfaz `SettingsRepository` declarada
 - [X] 6A-3 Interfaz `ExportRepository` declarada
-- [ ] 6A-4 5 casos de uso implementados con validaciones
+- [X] 6A-4 5 casos de uso implementados con validaciones
 
 ### Fase B — Datos
 - [ ] 6B-1 `SettingsTable` creada y registrada en `DatabaseFactory`
