@@ -329,8 +329,8 @@ estándar en proyectos Compose Desktop.
 - [X] 6A-4 5 casos de uso implementados con validaciones
 
 ### Fase B — Datos
-- [ ] 6B-1 `SettingsTable` creada y registrada en `DatabaseFactory`
-- [ ] 6B-2 `SettingsRepositoryImpl` con queries Exposed directas
+- [X] 6B-1 `SettingsTable` creada y registrada en `DatabaseFactory`
+- [X] 6B-2 `SettingsRepositoryImpl` con queries Exposed directas
 - [ ] 6B-3 `ExportRepositoryImpl` con CSV vía `BufferedWriter`
 - [ ] 6B-4 Mappers de extensión en `Mappers.kt`
 

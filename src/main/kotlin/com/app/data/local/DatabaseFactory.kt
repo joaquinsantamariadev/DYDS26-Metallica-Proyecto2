@@ -6,6 +6,7 @@ import com.app.data.local.inventory.ProductTable
 import com.app.data.local.sales.CashRegisterSessionsTable
 import com.app.data.local.sales.SaleItemsTable
 import com.app.data.local.sales.SalesTable
+import com.app.data.local.settings.SettingsTable
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -22,7 +23,7 @@ object DatabaseFactory {
         transaction {
             SchemaUtils.create(
                 CategoryTable, ProductTable, ExchangeRateTable, CashRegisterSessionsTable,
-                SalesTable, SaleItemsTable
+                SalesTable, SaleItemsTable, SettingsTable
             )
         }
     }
