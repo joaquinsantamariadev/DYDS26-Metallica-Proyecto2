@@ -82,38 +82,31 @@ Las constantes de negocio se definen en `companion object` de cada clase:
 
 ### Fase B — Capa de Datos
 
-**Tarea 5B-1 — Interfaz `ReportsLocalDataSource`**
-Declarar el contrato en `data/local/ReportsLocalDataSource.kt`.
-Sus métodos devuelven DTOs propios (no entities de dominio) aptos para mapeo.
+**Tarea 5B-1 — `ReportsMapper`**
+Crear `data/mapper/ReportsMapper.kt` con extension functions sobre `ResultRow` y colecciones,
+consistente con el patrón de `Mappers.kt` existente.
+Responsabilidades:
+- `ResultRow.toTransactionItemDetail()` y `ResultRow.toTransactionHistoryEntry(items)` para el historial.
+- `ResultRow.toMarginEntry()` — calcula `grossMargin = salePrice - costPrice` y
+  `grossMarginPercent = (grossMargin / salePrice) * 100`.
+- `List<RevenueDataPoint>.toRevenueSummary()` — agrega `totalRevenue`, `totalSales` y `averageTicket`.
+- `fun periodLabel(periodKey: String, period: ReportPeriod): String` — formatea la clave cruda de
+  `strftime` a etiqueta legible (`"Ene 2025"`, `"Sem 3"`, `"15/01"`).
 
-**Tarea 5B-2 — Implementación `ReportsLocalDataSourceImpl`**
-Implementar las queries con Exposed dentro de bloques `transaction { }`.
+**Tarea 5B-2 — `ReportsRepositoryImpl`**
+Implementar en `data/repository/ReportsRepositoryImpl.kt` con queries Exposed directas,
+igual que el resto de los repositorios del proyecto. No hay capa de DataSource intermedia.
 
 Queries principales:
-- **Historial:** `JOIN Sales + SaleItems + Products` filtrado por rango de fechas,
-  ordenado por `createdAt DESC`, con `LIMIT`/`OFFSET`.
-- **Ingresos:** `SELECT strftime(..., createdAt), SUM(total), COUNT(id) FROM Sales`
-  agrupado por período (diario/semanal/mensual según `ReportPeriod`), filtrado por
-  rango de fechas. La expresión de `strftime` varía según la granularidad.
-- **Rotación:** `SELECT productId, productName, categoryName, SUM(quantity), SUM(subtotal)`
-  con `JOIN SaleItems + Products + Categories`, filtrado por fecha, agrupado por producto,
-  ordenado por `SUM(quantity) DESC`, con `LIMIT topN`.
-- **Márgenes:** `SELECT productId, name, categoryName, costPrice, salePrice`
-  con `JOIN Products + Categories`, sin filtro de fecha.
-
-**Tarea 5B-3 — `ReportsMapper`**
-Traducir los DTOs del data source a entities de dominio.
-Responsabilidades exclusivas del mapper:
-- Calcular `grossMargin = salePrice - costPrice`.
-- Calcular `grossMarginPercent = (grossMargin / salePrice) * 100`.
-- Formatear la etiqueta del período (`"Ene 2025"`, `"Semana 3"`, etc.) a partir
-  del valor crudo de la query de ingresos.
-- Construir `RevenueSummary` agregando `totalRevenue`, `totalSales` y `averageTicket`
-  a partir de la lista de `RevenueDataPoint`.
-
-**Tarea 5B-4 — `ReportsRepositoryImpl`**
-Orquestar `ReportsLocalDataSource` + `ReportsMapper`.
-No referencia Exposed ni SQL directamente.
+- **Historial:** dos `SELECT` dentro del mismo `transaction {}`: primero pagina `SalesTable`
+  con `limit/offset` (el conteo aplica sobre ventas, no filas del JOIN), luego trae ítems
+  con `inList` sobre los IDs resultantes.
+- **Ingresos:** `CustomFunction<String>("strftime", ...)` agrupado por período, filtrado por
+  rango de fechas. El resultado se mapea a `List<RevenueDataPoint>` y se convierte a
+  `RevenueSummary` vía el mapper.
+- **Rotación:** JOIN `SaleItemsTable → SalesTable → ProductTable → CategoryTable` con `sum()`
+  de cantidad y subtotal, agrupado por producto, ordenado descendente, limitado a `topN`.
+- **Márgenes:** JOIN `ProductTable → CategoryTable`, sin filtro de fecha.
 
 ### Fase C — Inyección de Dependencias
 
@@ -497,10 +490,8 @@ sin interfaz separada, inyectadas directamente en los ViewModels vía Koin.
   `GetProductRotationUseCase`, `GetMarginsUseCase` implementados
 
 ### Fase B — Datos
-- [ ] 5B-1 Interfaz `ReportsLocalDataSource` declarada
-- [ ] 5B-2 `ReportsLocalDataSourceImpl` con queries Exposed implementado
-- [ ] 5B-3 `ReportsMapper` implementado (margen, etiquetas de período, `RevenueSummary`)
-- [ ] 5B-4 `ReportsRepositoryImpl` implementado
+- [X] 5B-1 `ReportsMapper` implementado (margen, etiquetas de período, `RevenueSummary`)
+- [X] 5B-2 `ReportsRepositoryImpl` implementado con queries Exposed directas
 
 ### Fase C — DI
 - [ ] 5C-1 Bindings Koin registrados (data source, repo, use cases, 2 ViewModels)
