@@ -13,7 +13,7 @@ fun PeriodSelector(
     onPeriodSelected: (ReportPeriod) -> Unit
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
-        ReportPeriod.values().forEach { period ->
+        ReportPeriod.entries.forEach { period ->
             Row(verticalAlignment = Alignment.CenterVertically) {
                 RadioButton(
                     selected = currentPeriod == period,
