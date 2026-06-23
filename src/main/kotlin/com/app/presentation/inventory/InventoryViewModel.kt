@@ -1,11 +1,15 @@
 package com.app.presentation.inventory
 
+import com.app.domain.entity.ExchangeRate
 import com.app.domain.entity.Product
 import com.app.domain.repository.InventoryRepository
 import com.app.domain.usecase.ScanProductUseCase
+import com.app.domain.usecase.exchangerate.GetExchangeRateUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,12 +21,15 @@ data class InventoryState(
     val allProducts: List<Product> = emptyList(),
     val products: List<Product> = emptyList(),
     val searchQuery: String = "",
-    val error: String? = null
+    val error: String? = null,
+    val exchangeRate: ExchangeRate? = null,
+    val exchangeRateUnavailable: Boolean = false
 )
 
 class InventoryViewModel(
     private val inventoryRepository: InventoryRepository,
-    private val scanProductUseCase: ScanProductUseCase
+    private val scanProductUseCase: ScanProductUseCase,
+    private val getExchangeRateUseCase: GetExchangeRateUseCase   // ← agregar
 ) {
     private val viewModelScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
@@ -35,8 +42,23 @@ class InventoryViewModel(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
             try {
-                val products = inventoryRepository.getProducts()
-                _state.update { it.copy(isLoading = false, allProducts = products, products = products) }
+                coroutineScope {
+                    val productsDef = async { inventoryRepository.getProducts() }
+                    val rateDef = async { runCatching { getExchangeRateUseCase() } }
+
+                    val products = productsDef.await()
+                    val rateResult = rateDef.await()
+
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            allProducts = products,
+                            products = applySearch(products, it.searchQuery),
+                            exchangeRate = rateResult.getOrNull(),
+                            exchangeRateUnavailable = rateResult.isFailure
+                        )
+                    }
+                }
             } catch (e: Exception) {
                 _state.update { it.copy(isLoading = false, error = "Error al cargar productos") }
             }

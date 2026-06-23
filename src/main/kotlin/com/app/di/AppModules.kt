@@ -73,7 +73,7 @@ val appModule = module {
     factory { ExportDataUseCase(get()) }
     factory { GetExchangeRateUseCase(get()) }
 
-    factory { InventoryViewModel(get(), get()) }
+    factory { InventoryViewModel(get(), get(), get()) }
     factory { CategoryViewModel(get()) }
     factory { PosViewModel(get(), get(), get(), get()) }
     factory { CashRegisterViewModel(get(), get(), get(), get()) }

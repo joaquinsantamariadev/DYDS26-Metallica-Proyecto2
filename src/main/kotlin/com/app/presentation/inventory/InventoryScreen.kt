@@ -49,6 +49,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.domain.entity.ExchangeRate
 import com.app.domain.entity.Product
 import com.app.presentation.utils.BoneWhite
 import com.app.presentation.utils.CharcoalBrown
@@ -146,6 +147,19 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
             }
         }
 
+        if (state.exchangeRateUnavailable) {
+            Box(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                    .clip(RoundedCornerShape(8.dp)).background(DarkSand.copy(alpha = 0.4f)).padding(10.dp)
+            ) {
+                Text(
+                    text = "Cotización no disponible — precios en ARS no pueden calcularse",
+                    color = TaupeGray,
+                    fontSize = 12.sp
+                )
+            }
+        }
+
         Spacer(Modifier.height(16.dp))
 
         when {
@@ -153,7 +167,12 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
                 CircularProgressIndicator(color = PeachOrange, strokeWidth = 3.dp)
             }
             state.products.isEmpty() -> EmptyInventoryPlaceholder()
-            else -> ProductTable(products = state.products, onEdit = { editingProduct = it }, onDelete = { deletingProduct = it })
+            else -> ProductTable(
+                products = state.products,
+                exchangeRate = state.exchangeRate,
+                onEdit = { editingProduct = it },
+                onDelete = { deletingProduct = it }
+            )
         }
     }
 
@@ -261,7 +280,12 @@ private fun EmptyInventoryPlaceholder() {
 }
 
 @Composable
-private fun ProductTable(products: List<Product>, onEdit: (Product) -> Unit, onDelete: (Product) -> Unit) {
+private fun ProductTable(
+    products: List<Product>,
+    exchangeRate: ExchangeRate?,
+    onEdit: (Product) -> Unit,
+    onDelete: (Product) -> Unit
+) {
     Card(shape = RoundedCornerShape(16.dp), backgroundColor = BoneWhite, elevation = 0.dp, modifier = Modifier.fillMaxSize()) {
         Column {
             Row(
@@ -270,6 +294,7 @@ private fun ProductTable(products: List<Product>, onEdit: (Product) -> Unit, onD
                 Text("Producto", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(2f))
                 Text("Código", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1.5f))
                 Text("Precio (USD)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Text("Precio (ARS)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
                 Text("Costo (USD)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
                 Text("Stock", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(0.7f))
                 Text("Vence", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1.2f))
@@ -278,7 +303,7 @@ private fun ProductTable(products: List<Product>, onEdit: (Product) -> Unit, onD
             Divider(color = DarkSand, thickness = 1.dp)
             LazyColumn {
                 items(products) { product ->
-                    ProductRow(product, onEdit, onDelete)
+                    ProductRow(product, exchangeRate, onEdit, onDelete)
                     Divider(color = DarkSand.copy(alpha = 0.5f), thickness = 0.5.dp)
                 }
             }
@@ -287,7 +312,12 @@ private fun ProductTable(products: List<Product>, onEdit: (Product) -> Unit, onD
 }
 
 @Composable
-private fun ProductRow(product: Product, onEdit: (Product) -> Unit, onDelete: (Product) -> Unit) {
+private fun ProductRow(
+    product: Product,
+    exchangeRate: ExchangeRate?,
+    onEdit: (Product) -> Unit,
+    onDelete: (Product) -> Unit
+) {
     val today = LocalDate.now()
     val isExpired = product.expiryDate?.isBefore(today) == true
     val isExpiringSoon = product.expiryDate?.isBefore(today.plusDays(30)) == true && !isExpired
@@ -304,6 +334,13 @@ private fun ProductRow(product: Product, onEdit: (Product) -> Unit, onDelete: (P
         Text(product.name, color = CharcoalBrown, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(2f))
         Text(product.barcode ?: "—", color = TaupeGray, fontSize = 13.sp, modifier = Modifier.weight(1.5f))
         Text("$${String.format("%.2f", product.price)}", color = CharcoalBrown, fontSize = 14.sp, modifier = Modifier.weight(1f))
+        val arsPrice = exchangeRate?.let { product.price * it.rate }
+        Text(
+            text = arsPrice?.let { "$${"%.2f".format(it)}" } ?: "—",
+            color = TaupeGray,
+            fontSize = 13.sp,
+            modifier = Modifier.weight(1f)
+        )
         Text("$${String.format("%.2f", product.cost)}", color = TaupeGray, fontSize = 13.sp, modifier = Modifier.weight(1f))
         Text("${product.stock}", color = CharcoalBrown, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(0.7f))
         Text(
