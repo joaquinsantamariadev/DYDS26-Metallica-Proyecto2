@@ -1,5 +1,6 @@
 package com.app.data.mapper
 
+import com.app.data.external.dolar.ExchangeRateResponse
 import com.app.data.local.inventory.CategoryTable
 import com.app.data.local.inventory.ExchangeRateTable
 import com.app.data.local.inventory.ProductTable
@@ -152,3 +153,10 @@ fun SystemSettings.toKeyValuePairs() = mapOf(
     "history_page_size" to historyPageSize.toString(),
     "rotation_top_n" to rotationTopN.toString()
 )
+
+fun ExchangeRateResponse.toExchangeRate(): ExchangeRate =
+    ExchangeRate(
+        currencyPair = "USD/ARS",
+        rate = sell,
+        lastUpdated = System.currentTimeMillis()
+    )

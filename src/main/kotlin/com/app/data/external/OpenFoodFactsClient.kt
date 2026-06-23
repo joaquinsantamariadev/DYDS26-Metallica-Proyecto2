@@ -1,8 +1,8 @@
 package com.app.data.external
 
 import com.app.data.external.dto.OffResponse
-import com.app.domain.repository.ProductExternalSource
 import com.app.domain.entity.Product
+import com.app.domain.repository.ProductExternalSource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
