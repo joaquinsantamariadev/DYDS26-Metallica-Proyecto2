@@ -3,7 +3,7 @@ package com.app.data
 import com.app.domain.entity.Product
 import com.app.domain.repository.InventoryRepository
 
-class FakeInventoryRepository : InventoryRepository {
+class InventoryRepositoryFake : InventoryRepository {
     val productsList = mutableListOf<Product>()
     var insertProductCalled = false
     var updateProductCalled = false

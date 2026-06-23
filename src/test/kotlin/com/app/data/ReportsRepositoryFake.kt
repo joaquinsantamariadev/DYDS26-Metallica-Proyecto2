@@ -10,7 +10,9 @@ class ReportsRepositoryFake : ReportsRepository {
     var marginsResult: List<MarginEntry> = emptyList()
     var shouldThrowError = false
 
-    var capturedFilters: ReportFilters? = null
+    var capturedHistoryFilters: ReportFilters? = null
+    var capturedRevenueFilters: ReportFilters? = null
+    var capturedRotationFilters: ReportFilters? = null
     var capturedLimit: Int? = null
     var capturedOffset: Int? = null
     var capturedTopN: Int? = null
@@ -21,7 +23,7 @@ class ReportsRepositoryFake : ReportsRepository {
         offset: Int
     ): List<TransactionHistoryEntry> {
         if (shouldThrowError) throw Exception("transaction history error")
-        capturedFilters = filters
+        capturedHistoryFilters = filters
         capturedLimit = limit
         capturedOffset = offset
         return transactionHistoryResult
@@ -29,7 +31,7 @@ class ReportsRepositoryFake : ReportsRepository {
 
     override suspend fun getRevenueSummary(filters: ReportFilters): RevenueSummary {
         if (shouldThrowError) throw Exception("revenue summary error")
-        capturedFilters = filters
+        capturedRevenueFilters = filters
         return revenueSummaryResult
     }
 
@@ -38,7 +40,7 @@ class ReportsRepositoryFake : ReportsRepository {
         topN: Int
     ): List<ProductRotationEntry> {
         if (shouldThrowError) throw Exception("product rotation error")
-        capturedFilters = filters
+        capturedRotationFilters = filters
         capturedTopN = topN
         return productRotationResult
     }

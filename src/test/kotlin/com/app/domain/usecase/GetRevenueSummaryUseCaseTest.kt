@@ -26,7 +26,7 @@ class GetRevenueSummaryUseCaseTest {
         val filters = ReportFilters.default()
         useCase(filters)
 
-        assertEquals(filters, repo.capturedFilters)
+        assertEquals(filters, repo.capturedRevenueFilters)
     }
 
     @Test

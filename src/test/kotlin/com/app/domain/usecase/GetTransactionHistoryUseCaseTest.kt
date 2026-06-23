@@ -37,7 +37,7 @@ class GetTransactionHistoryUseCaseTest {
         val filters = ReportFilters.default()
         useCase(filters, 0)
 
-        assertEquals(filters, repo.capturedFilters)
+        assertEquals(filters, repo.capturedHistoryFilters)
     }
 
     @Test

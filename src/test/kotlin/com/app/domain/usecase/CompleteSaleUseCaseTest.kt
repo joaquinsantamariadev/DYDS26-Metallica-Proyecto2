@@ -1,6 +1,6 @@
 package com.app.domain.usecase
 
-import com.app.data.FakeInventoryRepository
+import com.app.data.InventoryRepositoryFake
 import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.sale.SaleItem
 import com.app.domain.usecase.cart.ValidateCartStockUseCase
@@ -11,7 +11,7 @@ import kotlin.test.*
 
 class CompleteSaleUseCaseTest {
 
-    private val inventoryRepo = FakeInventoryRepository()
+    private val inventoryRepo = InventoryRepositoryFake()
     private val saleRepo = SaleRepositoryFake()
     private val validateStock = ValidateCartStockUseCase(inventoryRepo)
     private val useCase = CompleteSaleUseCase(validateStock, inventoryRepo, saleRepo)

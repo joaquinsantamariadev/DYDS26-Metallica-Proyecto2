@@ -3,7 +3,7 @@ package com.app.data
 import com.app.domain.entity.Product
 import com.app.domain.repository.ProductExternalSource
 
-class FakeProductExternalSource : ProductExternalSource {
+class ProductExternalSourceFake : ProductExternalSource {
     var result: Product? = null
     var shouldThrowError = false
 

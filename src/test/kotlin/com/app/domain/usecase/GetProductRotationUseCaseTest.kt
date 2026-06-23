@@ -35,7 +35,7 @@ class GetProductRotationUseCaseTest {
         val filters = ReportFilters.default()
         useCase(filters)
 
-        assertEquals(filters, repo.capturedFilters)
+        assertEquals(filters, repo.capturedRotationFilters)
     }
 
     @Test

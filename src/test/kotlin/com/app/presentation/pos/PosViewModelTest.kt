@@ -1,6 +1,6 @@
 package com.app.presentation.pos
 
-import com.app.data.FakeInventoryRepository
+import com.app.data.InventoryRepositoryFake
 import com.app.domain.entity.CashRegisterSession
 import com.app.domain.entity.PaymentMethod
 import com.app.domain.entity.Product
@@ -19,14 +19,14 @@ import kotlin.test.*
 
 class PosViewModelTest {
 
-    private val inventoryRepo = FakeInventoryRepository()
+    private val inventoryRepo = InventoryRepositoryFake()
     private val saleRepo = SaleRepositoryFake()
     private val cashRegisterRepo = CashRegisterRepositoryFake()
 
     private val validateStock = ValidateCartStockUseCase(inventoryRepo)
     private val completeSale = CompleteSaleUseCase(validateStock, inventoryRepo, saleRepo)
     private val getActiveSession = GetActiveSessionUseCase(cashRegisterRepo)
-    private val scanProduct = ScanProductUseCase(inventoryRepo, com.app.data.FakeProductExternalSource())
+    private val scanProduct = ScanProductUseCase(inventoryRepo, com.app.data.ProductExternalSourceFake())
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun buildViewModel() = PosViewModel(

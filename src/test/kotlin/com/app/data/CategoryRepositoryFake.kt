@@ -3,7 +3,7 @@ package com.app.data
 import com.app.domain.entity.Category
 import com.app.domain.repository.CategoryRepository
 
-class FakeCategoryRepository : CategoryRepository {
+class CategoryRepositoryFake : CategoryRepository {
     val categoriesList = mutableListOf<Category>()
     var insertCalled = false
     var updateCalled = false

@@ -1,6 +1,6 @@
 package com.app.presentation.inventory
 
-import com.app.data.FakeCategoryRepository
+import com.app.data.CategoryRepositoryFake
 import com.app.domain.entity.Category
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 
 class CategoryViewModelTest {
 
-    private val repo = FakeCategoryRepository()
+    private val repo = CategoryRepositoryFake()
     private val viewModel = CategoryViewModel(repo)
 
     @Test

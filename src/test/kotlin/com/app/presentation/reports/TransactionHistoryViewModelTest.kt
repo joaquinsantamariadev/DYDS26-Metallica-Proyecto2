@@ -68,12 +68,26 @@ class TransactionHistoryViewModelTest {
     }
 
     @Test
-    fun error_setsErrorState() {
+    fun error_setsErrorStateAndEmptyTransactions() {
         repo.shouldThrowError = true
 
         val vm = buildViewModel()
 
         assertNotNull(vm.uiState.value.error)
         assertFalse(vm.uiState.value.isLoading)
+        assertTrue(vm.uiState.value.transactions.isEmpty())
+    }
+
+    @Test
+    fun refresh_resetsAndReloads() {
+        repo.transactionHistoryResult = listOf(transaction(1L, 100.0))
+        val vm = buildViewModel()
+
+        repo.transactionHistoryResult = listOf(transaction(2L, 200.0))
+        vm.refresh()
+
+        assertEquals(1, vm.uiState.value.transactions.size)
+        assertEquals(2L, vm.uiState.value.transactions.first().saleId)
+        assertEquals(0, vm.uiState.value.currentPage)
     }
 }

@@ -1,6 +1,6 @@
 package com.app.domain.usecase
 
-import com.app.data.FakeInventoryRepository
+import com.app.data.InventoryRepositoryFake
 import com.app.domain.entity.Product
 import com.app.domain.usecase.cart.ValidateCartStockUseCase
 import kotlinx.coroutines.runBlocking
@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 
 class ValidateCartStockUseCaseTest {
 
-    private val inventoryRepo = FakeInventoryRepository()
+    private val inventoryRepo = InventoryRepositoryFake()
     private val useCase = ValidateCartStockUseCase(inventoryRepo)
 
     @Test
