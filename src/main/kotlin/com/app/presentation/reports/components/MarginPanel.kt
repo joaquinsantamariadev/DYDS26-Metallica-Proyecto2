@@ -17,9 +17,9 @@ fun MarginPanel(margins: List<MarginEntry>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(margins) { margin ->
             val bgColor = when {
-                margin.grossMarginPercent >= 40 -> Color(0xFFE8F5E9) // Verde
-                margin.grossMarginPercent >= 20 -> Color(0xFFFFF3E0) // Amarillo
-                else -> Color(0xFFFFEBEE) // Rojo
+                margin.grossMarginPercent > 25 -> Color(0xFFE8F5E9)
+                margin.grossMarginPercent >= 10 -> Color(0xFFFFF3E0)
+                else -> Color(0xFFFFEBEE)
             }
             Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp), elevation = 2.dp) {
                 Column(modifier = Modifier.background(bgColor).padding(16.dp)) {

@@ -33,10 +33,13 @@ class TransactionHistoryViewModel(
         }
     }
 
+    fun refresh() {
+        loadTransactions(isRefresh = true)
+    }
+
     private fun loadTransactions(isRefresh: Boolean) {
         scope.launch {
-            val currentState = _uiState.value
-            val pageToLoad = if (isRefresh) 0 else currentState.currentPage + 1
+            val pageToLoad = if (isRefresh) 0 else _uiState.value.currentPage + 1
 
             _uiState.update {
                 it.copy(
@@ -48,7 +51,8 @@ class TransactionHistoryViewModel(
             }
 
             try {
-                val newTransactions = getTransactionHistoryUseCase(currentState.filters, pageToLoad)
+                val filters = _uiState.value.filters
+                val newTransactions = getTransactionHistoryUseCase(filters, pageToLoad)
                 _uiState.update {
                     val updatedList = if (isRefresh) newTransactions else it.transactions + newTransactions
                     it.copy(
