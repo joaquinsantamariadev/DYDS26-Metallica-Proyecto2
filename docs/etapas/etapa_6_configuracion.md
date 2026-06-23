@@ -323,9 +323,9 @@ estándar en proyectos Compose Desktop.
 ## 8. Checklist de Progreso
 
 ### Fase A — Dominio
-- [ ] 6A-1 `StoreSettings`, `SystemSettings`, `ExportFormat` definidos
-- [ ] 6A-2 Interfaz `SettingsRepository` declarada
-- [ ] 6A-3 Interfaz `ExportRepository` declarada
+- [X] 6A-1 `StoreSettings`, `SystemSettings`, `ExportFormat` definidos
+- [X] 6A-2 Interfaz `SettingsRepository` declarada
+- [X] 6A-3 Interfaz `ExportRepository` declarada
 - [ ] 6A-4 5 casos de uso implementados con validaciones
 
 ### Fase B — Datos
