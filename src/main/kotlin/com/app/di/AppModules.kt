@@ -1,6 +1,7 @@
 package com.app.di
 
 import com.app.data.external.OpenFoodFactsClient
+import com.app.data.external.dolar.ExchangeRateRemoteDataSource
 import com.app.data.repository.*
 import com.app.domain.repository.*
 import com.app.domain.usecase.ScanProductUseCase
@@ -12,6 +13,7 @@ import com.app.domain.usecase.dashboard.GetDashboardMetricsUseCase
 import com.app.domain.usecase.dashboard.GetExpiryAlertsUseCase
 import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
 import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
+import com.app.domain.usecase.exchangerate.GetExchangeRateUseCase
 import com.app.domain.usecase.sale.CompleteSaleUseCase
 import com.app.domain.usecase.settings.*
 import com.app.presentation.dashboard.DashboardViewModel
@@ -47,7 +49,8 @@ val appModule = module {
     }
 
     single<InventoryRepository> { InventoryRepositoryImpl() }
-    single<ExchangeRateRepository> { ExchangeRateRepositoryImpl() }
+    single { ExchangeRateRemoteDataSource(get()) }
+    single<ExchangeRateRepository> { ExchangeRateRepositoryImpl(get()) }
     single<CategoryRepository> { CategoryRepositoryImpl() }
     single<ProductExternalSource> { OpenFoodFactsClient(get()) }
 
@@ -68,6 +71,7 @@ val appModule = module {
     factory { SaveStoreSettingsUseCase(get()) }
     factory { SaveSystemSettingsUseCase(get()) }
     factory { ExportDataUseCase(get()) }
+    factory { GetExchangeRateUseCase(get()) }
 
     factory { InventoryViewModel(get(), get()) }
     factory { CategoryViewModel(get()) }
