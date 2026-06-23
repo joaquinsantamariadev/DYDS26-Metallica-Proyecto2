@@ -492,22 +492,22 @@ sin interfaz separada, inyectadas directamente en los ViewModels vía Koin.
 - [X] 5B-2 `ReportsRepositoryImpl` implementado con queries Exposed directas
 
 ### Fase C — DI
-- [ ] 5C-1 Bindings Koin registrados (repo, use cases, 2 ViewModels)
+- [X] 5C-1 Bindings Koin registrados (repo, use cases, 2 ViewModels)
 
 ### Fase D — Presentación
-- [ ] 5D-1 `TransactionHistoryUiState` y `StatisticsUiState` definidos
-- [ ] 5D-2 `TransactionHistoryViewModel` con paginación y filtros
-- [ ] 5D-3 `StatisticsViewModel` con carga paralela y filtros
-- [ ] 5D-4 `RevenueChart` con Canvas (sin dependencias externas)
-- [ ] 5D-5 Sub-composables: `DateRangePicker`, `PeriodSelector`, `TransactionTable`,
+- [X] 5D-1 `TransactionHistoryUiState` y `StatisticsUiState` definidos
+- [X] 5D-2 `TransactionHistoryViewModel` con paginación y filtros
+- [X] 5D-3 `StatisticsViewModel` con carga paralela y filtros
+- [X] 5D-4 `RevenueChart` con Canvas (sin dependencias externas)
+- [X] 5D-5 Sub-composables: `DateRangePicker`, `PeriodSelector`, `TransactionTable`,
   `RotationPanel`, `MarginPanel`
-- [ ] 5D-6 `TransactionHistoryScreen`, `StatisticsScreen`, `ReportsScreen` con tab row
+- [X] 5D-6 `TransactionHistoryScreen`, `StatisticsScreen`, `ReportsScreen` con tab row
   integrada en `App.kt`
 
 ### Fase E — Tests
-- [ ] 5E-1 `ReportsRepositoryFake` en archivo propio con captura de parámetros
-- [ ] 5E-2 Tests de los 4 casos de uso (éxito, error, verificación de parámetros)
-- [ ] 5E-3 `TransactionHistoryViewModelTest` (estado inicial, carga, paginación,
+- [X] 5E-1 `ReportsRepositoryFake` en archivo propio con captura de parámetros
+- [X] 5E-2 Tests de los 4 casos de uso (éxito, error, verificación de parámetros)
+- [X] 5E-3 `TransactionHistoryViewModelTest` (estado inicial, carga, paginación,
   filtro, error, refresh)
-- [ ] 5E-4 `StatisticsViewModelTest` (estado inicial, carga paralela, cambio de filtros,
+- [X] 5E-4 `StatisticsViewModelTest` (estado inicial, carga paralela, cambio de filtros,
   márgenes no se recargan, error)

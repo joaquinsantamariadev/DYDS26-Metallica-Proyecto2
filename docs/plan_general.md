@@ -20,8 +20,8 @@ El sistema se construye en **7 etapas progresivas**. Cada etapa tiene su propio 
 | 1 | Modelo de Datos y Persistencia | ✅ Completada | `docs/etapas/etapa_1_persistencia.md` | Entities, tablas de BD, repository interfaces + implementaciones CRUD base |
 | 2 | Gestión de Inventario | ✅ Completada | `docs/etapas/etapa_2_inventario.md`   | Catálogo, Categorías, Ingreso con escáner (OpenFoodFacts), Vencimientos |
 | 3 | Punto de Venta (POS) | ✅ Completada | `docs/etapas/etapa_3_ventas.md`       | Venta activa, carrito, impacto transaccional de stock, cierre de caja |
-| 4 | Dashboard | ✅ Completada | `docs/etapas/etapa_3_dashboard.md`    | Métricas, alertas de bajo stock / vencimientos, actividad reciente |
-| 5 | Reportes y Estadísticas | 🔄 En progreso | `docs/etapas/etapa_4_reportes.md`     | Historial de transacciones, gráficos de rotación, márgenes, ingresos |
+| 4 | Dashboard | ✅ Completada | `docs/etapas/etapa_4_dashboard.md`    | Métricas, alertas de bajo stock / vencimientos, actividad reciente |
+| 5 | Reportes y Estadísticas | ✅ Completada| `docs/etapas/etapa_5_reportes.md`     | Historial de transacciones, gráficos de rotación, márgenes, ingresos |
 | 6 | Configuración del Sistema | 🔲 Pendiente | _Se genera al iniciar_                | Datos del local, usuarios/roles, integraciones API, backup/export |
 
 > **Leyenda:** 🔲 Pendiente · 🔄 En progreso · ✅ Completada
