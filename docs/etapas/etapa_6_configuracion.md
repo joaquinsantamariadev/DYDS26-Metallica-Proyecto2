@@ -344,6 +344,6 @@ estándar en proyectos Compose Desktop.
 - [X] 6D-4 `SettingsScreen` reemplaza placeholder e integrado en navegación
 
 ### Fase E — Tests
-- [ ] 6E-1 `SettingsRepositoryFake` y `ExportRepositoryFake` en archivos propios
-- [ ] 6E-2 Tests de los 5 casos de uso (éxito, validación, error)
-- [ ] 6E-3 `SettingsViewModelTest` (carga, guardado, exportación, errores)
+- [X] 6E-1 `SettingsRepositoryFake` y `ExportRepositoryFake` en archivos propios
+- [X] 6E-2 Tests de los 5 casos de uso (éxito, validación, error)
+- [X] 6E-3 `SettingsViewModelTest` (carga, guardado, exportación, errores)
