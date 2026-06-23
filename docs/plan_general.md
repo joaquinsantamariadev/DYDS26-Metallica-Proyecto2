@@ -22,8 +22,8 @@ El sistema se construye en **7 etapas progresivas**. Cada etapa tiene su propio 
 | 3 | Punto de Venta (POS) | ✅ Completada | `docs/etapas/etapa_3_ventas.md`        | Venta activa, carrito, impacto transaccional de stock, cierre de caja |
 | 4 | Dashboard | ✅ Completada | `docs/etapas/etapa_4_dashboard.md`     | Métricas, alertas de bajo stock / vencimientos, actividad reciente |
 | 5 | Reportes y Estadísticas | ✅ Completada| `docs/etapas/etapa_5_reportes.md`      | Historial de transacciones, gráficos de rotación, márgenes, ingresos |
-| 6 | Configuración del Sistema | 🔄 En progreso | `docs/etapas/etapa_6_configuracion.md` | Datos del local, usuarios/roles, integraciones API, backup/export |
-
+| 6 | Configuración del Sistema | ✅ Completada | `docs/etapas/etapa_6_configuracion.md` | Datos del local, usuarios/roles, integraciones API, backup/export |
+| 7 | Integración Dólar API | 🔄 En progreso | `docs/etapas/etapa_7_integracion_dolar.md` | Cotización blue en Dashboard y precios en USD en catálogo |
 > **Leyenda:** 🔲 Pendiente · 🔄 En progreso · ✅ Completada
 
 ---
