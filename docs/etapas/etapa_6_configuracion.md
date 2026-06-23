@@ -331,8 +331,8 @@ estándar en proyectos Compose Desktop.
 ### Fase B — Datos
 - [X] 6B-1 `SettingsTable` creada y registrada en `DatabaseFactory`
 - [X] 6B-2 `SettingsRepositoryImpl` con queries Exposed directas
-- [ ] 6B-3 `ExportRepositoryImpl` con CSV vía `BufferedWriter`
-- [ ] 6B-4 Mappers de extensión en `Mappers.kt`
+- [X] 6B-3 `ExportRepositoryImpl` con CSV vía `BufferedWriter`
+- [X] 6B-4 Mappers de extensión en `Mappers.kt`
 
 ### Fase C — DI
 - [ ] 6C-1 Bindings Koin registrados (repos, use cases, ViewModel)

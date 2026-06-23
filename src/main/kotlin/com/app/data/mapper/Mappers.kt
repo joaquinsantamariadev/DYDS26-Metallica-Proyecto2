@@ -6,9 +6,12 @@ import com.app.data.local.inventory.ProductTable
 import com.app.data.local.sales.CashRegisterSessionsTable
 import com.app.data.local.sales.SaleItemsTable
 import com.app.data.local.sales.SalesTable
+import com.app.data.local.settings.SettingsTable
 import com.app.domain.entity.*
 import com.app.domain.entity.sale.Sale
 import com.app.domain.entity.sale.SaleItem
+import com.app.domain.entity.settings.StoreSettings
+import com.app.domain.entity.settings.SystemSettings
 import org.jetbrains.exposed.sql.ResultRow
 import com.app.domain.entity.dashboard.ExpiryAlert
 import com.app.domain.entity.dashboard.RecentSaleEntry
@@ -88,4 +91,38 @@ fun ResultRow.toRecentSaleEntry(itemCount: Int) = RecentSaleEntry(
     dateTime = this[SalesTable.createdAt],
     itemCount = itemCount,
     total = this[SalesTable.total]
+)
+
+fun Iterable<ResultRow>.toSettingsMap() = associate {
+    it[SettingsTable.key] to it[SettingsTable.value]
+}
+
+fun Map<String, String>.toStoreSettings() = StoreSettings(
+    storeName = this["store_name"] ?: "",
+    address = this["address"] ?: "",
+    phone = this["phone"] ?: "",
+    currency = this["currency"] ?: "ARS",
+    logoPath = this["logo_path"] ?: ""
+)
+
+fun Map<String, String>.toSystemSettings() = SystemSettings(
+    defaultLowStockThreshold = this["default_low_stock_threshold"]?.toIntOrNull() ?: 5,
+    expiryAlertDays = this["expiry_alert_days"]?.toIntOrNull() ?: 7,
+    historyPageSize = this["history_page_size"]?.toIntOrNull() ?: 50,
+    rotationTopN = this["rotation_top_n"]?.toIntOrNull() ?: 20
+)
+
+fun StoreSettings.toKeyValuePairs() = mapOf(
+    "store_name" to storeName,
+    "address" to address,
+    "phone" to phone,
+    "currency" to currency,
+    "logo_path" to logoPath
+)
+
+fun SystemSettings.toKeyValuePairs() = mapOf(
+    "default_low_stock_threshold" to defaultLowStockThreshold.toString(),
+    "expiry_alert_days" to expiryAlertDays.toString(),
+    "history_page_size" to historyPageSize.toString(),
+    "rotation_top_n" to rotationTopN.toString()
 )
