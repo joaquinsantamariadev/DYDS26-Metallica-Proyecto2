@@ -112,7 +112,7 @@ Queries principales:
 
 **Tarea 5C-1 — Módulo Koin de reportes**
 Agregar `reportsModule` en `di/AppModules.kt` (o en `di/ReportsModule.kt` separado).
-Registrar: data source, repositorio, cuatro casos de uso, dos ViewModels.
+Registrar: repositorio, cuatro casos de uso, dos ViewModels.
 
 ### Fase D — Capa de Presentación
 
@@ -383,8 +383,6 @@ domain/usecase/GetMarginsUseCase.kt
 
 ### Nuevos — Data
 ```
-data/local/ReportsLocalDataSource.kt
-data/local/ReportsLocalDataSourceImpl.kt
 data/mapper/ReportsMapper.kt
 data/repository/ReportsRepositoryImpl.kt
 ```
@@ -494,7 +492,7 @@ sin interfaz separada, inyectadas directamente en los ViewModels vía Koin.
 - [X] 5B-2 `ReportsRepositoryImpl` implementado con queries Exposed directas
 
 ### Fase C — DI
-- [ ] 5C-1 Bindings Koin registrados (data source, repo, use cases, 2 ViewModels)
+- [ ] 5C-1 Bindings Koin registrados (repo, use cases, 2 ViewModels)
 
 ### Fase D — Presentación
 - [ ] 5D-1 `TransactionHistoryUiState` y `StatisticsUiState` definidos

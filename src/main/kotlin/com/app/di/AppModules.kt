@@ -18,6 +18,13 @@ import com.app.presentation.inventory.CategoryViewModel
 import com.app.presentation.inventory.InventoryViewModel
 import com.app.presentation.pos.PosViewModel
 import com.app.presentation.pos.cashregister.CashRegisterViewModel
+import com.app.presentation.reports.StatisticsViewModel
+import com.app.presentation.reports.TransactionHistoryViewModel
+import com.app.domain.usecase.report.GetMarginsUseCase
+import com.app.domain.usecase.report.GetProductRotationUseCase
+import com.app.domain.usecase.report.GetRevenueSummaryUseCase
+import com.app.domain.usecase.report.GetTransactionHistoryUseCase
+
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -64,4 +71,14 @@ val appModule = module {
     factory { GetExpiryAlertsUseCase(get()) }
     factory { GetRecentSalesUseCase(get()) }
     factory { DashboardViewModel(get(), get(), get(), get()) }
+
+    single<ReportsRepository> { ReportsRepositoryImpl() }
+
+    factory { GetTransactionHistoryUseCase(get()) }
+    factory { GetRevenueSummaryUseCase(get()) }
+    factory { GetProductRotationUseCase(get()) }
+    factory { GetMarginsUseCase(get()) }
+
+    factory { TransactionHistoryViewModel(get()) }
+    factory { StatisticsViewModel(get(), get(), get()) }
 }
