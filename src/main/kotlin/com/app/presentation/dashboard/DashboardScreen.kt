@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.app.presentation.dashboard.components.ExchangeRateWidget
 import com.app.presentation.dashboard.components.ExpiryAlertsPanel
 import com.app.presentation.dashboard.components.KpiCard
 import com.app.presentation.dashboard.components.RecentActivityPanel
@@ -64,6 +65,11 @@ fun DashboardScreen(
                     icon = if (metrics?.hasActiveSession == true) Icons.Default.CheckCircle else Icons.Default.Warning
                 )
             }
+            ExchangeRateWidget(
+                exchangeRate = state.exchangeRate,
+                unavailable = state.exchangeRateUnavailable,
+                modifier = Modifier.fillMaxWidth()
+            )
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)

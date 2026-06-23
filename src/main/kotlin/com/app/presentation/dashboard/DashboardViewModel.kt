@@ -4,6 +4,7 @@ import com.app.domain.usecase.dashboard.GetDashboardMetricsUseCase
 import com.app.domain.usecase.dashboard.GetExpiryAlertsUseCase
 import com.app.domain.usecase.dashboard.GetLowStockAlertsUseCase
 import com.app.domain.usecase.dashboard.GetRecentSalesUseCase
+import com.app.domain.usecase.exchangerate.GetExchangeRateUseCase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +16,7 @@ class DashboardViewModel(
     private val getLowStockAlerts: GetLowStockAlertsUseCase,
     private val getExpiryAlerts: GetExpiryAlertsUseCase,
     private val getRecentSales: GetRecentSalesUseCase,
+    private val getExchangeRateUseCase: GetExchangeRateUseCase,
     private val scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 ) {
     private val _uiState = MutableStateFlow(DashboardUiState())
@@ -35,12 +37,18 @@ class DashboardViewModel(
                     val stock = async { getLowStockAlerts() }
                     val expiry = async { getExpiryAlerts() }
                     val sales = async { getRecentSales() }
+                    val rateDef = async { runCatching { getExchangeRateUseCase() } }
+
+                    val rateResult = rateDef.await()
+
                     _uiState.update {
                         it.copy(
                             metrics = metrics.await(),
                             stockAlerts = stock.await(),
                             expiryAlerts = expiry.await(),
                             recentSales = sales.await(),
+                            exchangeRate = rateResult.getOrNull(),
+                            exchangeRateUnavailable = rateResult.isFailure,
                             isLoading = false
                         )
                     }

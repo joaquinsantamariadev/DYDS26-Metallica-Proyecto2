@@ -85,7 +85,7 @@ val appModule = module {
     factory { GetLowStockAlertsUseCase(get()) }
     factory { GetExpiryAlertsUseCase(get()) }
     factory { GetRecentSalesUseCase(get()) }
-    factory { DashboardViewModel(get(), get(), get(), get()) }
+    factory { DashboardViewModel(get(), get(), get(), get(), get()) }
 
     single<ReportsRepository> { ReportsRepositoryImpl() }
 

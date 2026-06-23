@@ -1,5 +1,6 @@
 package com.app.presentation.dashboard
 
+import com.app.domain.entity.ExchangeRate
 import com.app.domain.entity.dashboard.ExpiryAlert
 import com.app.domain.entity.dashboard.RecentSaleEntry
 import com.app.domain.entity.dashboard.StockAlert
@@ -11,5 +12,7 @@ data class DashboardUiState(
     val expiryAlerts: List<ExpiryAlert> = emptyList(),
     val recentSales: List<RecentSaleEntry> = emptyList(),
     val isLoading: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val exchangeRate: ExchangeRate? = null,
+    val exchangeRateUnavailable: Boolean = false
 )
