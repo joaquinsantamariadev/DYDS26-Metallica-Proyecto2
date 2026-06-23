@@ -338,7 +338,7 @@ estándar en proyectos Compose Desktop.
 - [X] 6C-1 Bindings Koin registrados (repos, use cases, ViewModel)
 
 ### Fase D — Presentación
-- [ ] 6D-1 `SettingsUiState` definido
+- [X] 6D-1 `SettingsUiState` definido
 - [ ] 6D-2 `SettingsViewModel` con carga, guardado y exportación
 - [ ] 6D-3 Sub-composables: `StoreSettingsForm`, `SystemSettingsForm`, `ExportPanel`
 - [ ] 6D-4 `SettingsScreen` reemplaza placeholder e integrado en navegación
