@@ -31,7 +31,12 @@ class InventoryRepositoryImpl(
         val remote = externalSource.fetchByBarcode(barcode)
         if (remote != null) {
             insertProduct(remote)
-            return remote
+            return transaction {
+                ProductTable.selectAll()
+                    .where { ProductTable.barcode eq barcode }
+                    .map { it.toProduct() }
+                    .singleOrNull()
+            }
         }
         return null
     }

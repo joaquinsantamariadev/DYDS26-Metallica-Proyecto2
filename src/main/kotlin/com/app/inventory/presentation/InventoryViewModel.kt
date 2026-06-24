@@ -23,7 +23,8 @@ data class InventoryState(
     val searchQuery: String = "",
     val error: String? = null,
     val exchangeRate: ExchangeRate? = null,
-    val exchangeRateUnavailable: Boolean = false
+    val exchangeRateUnavailable: Boolean = false,
+    val scannedProduct: Product? = null
 )
 
 class InventoryViewModel(
@@ -77,7 +78,8 @@ class InventoryViewModel(
                         it.copy(
                             isLoading = false,
                             allProducts = products,
-                            products = applySearch(products, it.searchQuery)
+                            products = applySearch(products, it.searchQuery),
+                            scannedProduct = product
                         )
                     }
                 } else {
@@ -117,6 +119,26 @@ class InventoryViewModel(
 
     fun clearError() {
         _state.update { it.copy(error = null) }
+    }
+
+    fun clearScannedProduct() {
+        _state.update { it.copy(scannedProduct = null) }
+    }
+
+    fun incrementStock(product: Product, quantityToAdd: Int) {
+        viewModelScope.launch {
+            try {
+                if (product.id != null) {
+                    inventoryRepository.updateStock(product.id, product.stock + quantityToAdd)
+                    _state.update { it.copy(scannedProduct = null) }
+                    loadAll()
+                } else {
+                    _state.update { it.copy(error = "No se puede actualizar el stock (ID nulo)", scannedProduct = null) }
+                }
+            } catch (e: Exception) {
+                _state.update { it.copy(error = "Error al incrementar stock", scannedProduct = null) }
+            }
+        }
     }
 
     private fun applySearch(products: List<Product>, query: String): List<Product> {

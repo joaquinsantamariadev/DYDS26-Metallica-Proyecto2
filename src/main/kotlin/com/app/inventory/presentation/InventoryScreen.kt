@@ -202,6 +202,14 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
             shape = RoundedCornerShape(16.dp)
         )
     }
+
+    state.scannedProduct?.let { product ->
+        IncrementStockDialog(
+            product = product,
+            onConfirm = { quantityToAdd -> viewModel.incrementStock(product, quantityToAdd) },
+            onDismiss = { viewModel.clearScannedProduct() }
+        )
+    }
 }
 
 @Composable
@@ -362,4 +370,43 @@ private fun ProductRow(
             }
         }
     }
+}
+
+@Composable
+private fun IncrementStockDialog(product: Product, onConfirm: (Int) -> Unit, onDismiss: () -> Unit) {
+    var quantity by remember { mutableStateOf("") }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Aumentar Stock", color = CharcoalBrown, fontWeight = FontWeight.Bold) },
+        text = {
+            Column {
+                Text("Producto: ${product.name}", color = CharcoalBrown, fontWeight = FontWeight.SemiBold)
+                Text("Stock actual: ${product.stock}", color = TaupeGray, fontSize = 14.sp)
+                Spacer(Modifier.height(16.dp))
+                DialogField("Cantidad a sumar", quantity) {
+                    if (it.isEmpty() || it.all { char -> char.isDigit() }) {
+                        quantity = it
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    val qty = quantity.toIntOrNull() ?: 0
+                    if (qty > 0) {
+                        onConfirm(qty)
+                    }
+                },
+                enabled = (quantity.toIntOrNull() ?: 0) > 0,
+                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+            ) { Text("Agregar") }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancelar", color = TaupeGray) }
+        },
+        backgroundColor = BoneWhite,
+        shape = RoundedCornerShape(16.dp)
+    )
 }
