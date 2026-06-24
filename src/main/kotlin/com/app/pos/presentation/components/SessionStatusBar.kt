@@ -1,5 +1,7 @@
 package com.app.pos.presentation.components
 
+import androidx.compose.material.MaterialTheme
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,7 +31,7 @@ fun SessionStatusBar(activeSession: CashRegisterSession?, onManageSession: () ->
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .background(BoneWhite)
+            .background(MaterialTheme.colors.surface)
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -45,7 +47,7 @@ fun SessionStatusBar(activeSession: CashRegisterSession?, onManageSession: () ->
                     "Caja abierta desde ${activeSession.openedAt.format(timeFormatter)}"
                 else
                     "Sin sesión de caja activa",
-                color = if (activeSession != null) CharcoalBrown else TaupeGray,
+                color = if (activeSession != null) MaterialTheme.colors.onSurface else TaupeGray,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Medium
             )
@@ -54,8 +56,8 @@ fun SessionStatusBar(activeSession: CashRegisterSession?, onManageSession: () ->
             onClick = onManageSession,
             shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = if (activeSession != null) DarkSand else PeachOrange,
-                contentColor = if (activeSession != null) CharcoalBrown else BoneWhite
+                backgroundColor = if (activeSession != null) MaterialTheme.colors.primary.copy(alpha = 0.15f) else MaterialTheme.colors.primary,
+                contentColor = if (activeSession != null) MaterialTheme.colors.primary else MaterialTheme.colors.surface
             ),
             modifier = Modifier
         ) {

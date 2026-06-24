@@ -30,7 +30,7 @@ data class InventoryState(
 class InventoryViewModel(
     private val inventoryRepository: InventoryRepository,
     private val scanProductUseCase: ScanProductUseCase,
-    private val getExchangeRateUseCase: GetExchangeRateUseCase   // ← agregar
+    private val getExchangeRateUseCase: GetExchangeRateUseCase
 ) {
     private val viewModelScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 

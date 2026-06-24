@@ -30,14 +30,6 @@ fun StatisticsScreen(viewModel: StatisticsViewModel, activeTab: String) {
                     filters = state.filters,
                     onFiltersChanged = { viewModel.onFiltersChanged(it) }
                 )
-                if (activeTab == "Ingresos") {
-                    PeriodSelector(
-                        currentPeriod = state.filters.period,
-                        onPeriodSelected = { newPeriod ->
-                            viewModel.onFiltersChanged(state.filters.copy(period = newPeriod))
-                        }
-                    )
-                }
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

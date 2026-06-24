@@ -2,6 +2,7 @@ package com.app.reports.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
@@ -17,9 +18,9 @@ fun MarginPanel(margins: List<MarginEntry>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(margins) { margin ->
             val bgColor = when {
-                margin.grossMarginPercent > 25 -> Color(0xFFE8F5E9)
-                margin.grossMarginPercent >= 10 -> Color(0xFFFFF3E0)
-                else -> Color(0xFFFFEBEE)
+                margin.grossMarginPercent > 25 -> Color(0xFF81C784).copy(alpha = 0.2f)
+                margin.grossMarginPercent >= 10 -> MaterialTheme.colors.primary.copy(alpha = 0.15f)
+                else -> MaterialTheme.colors.error.copy(alpha = 0.15f)
             }
             Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp), elevation = 2.dp) {
                 Column(modifier = Modifier.background(bgColor).padding(16.dp)) {

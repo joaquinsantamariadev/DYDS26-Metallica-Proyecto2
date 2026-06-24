@@ -141,7 +141,8 @@ fun Map<String, String>.toSystemSettings() = SystemSettings(
     defaultLowStockThreshold = this["default_low_stock_threshold"]?.toIntOrNull() ?: 5,
     expiryAlertDays = this["expiry_alert_days"]?.toIntOrNull() ?: 7,
     historyPageSize = this["history_page_size"]?.toIntOrNull() ?: 50,
-    rotationTopN = this["rotation_top_n"]?.toIntOrNull() ?: 20
+    rotationTopN = this["rotation_top_n"]?.toIntOrNull() ?: 20,
+    isDarkMode = this["is_dark_mode"]?.toBooleanStrictOrNull() ?: false
 )
 
 fun StoreSettings.toKeyValuePairs() = mapOf(
@@ -156,7 +157,8 @@ fun SystemSettings.toKeyValuePairs() = mapOf(
     "default_low_stock_threshold" to defaultLowStockThreshold.toString(),
     "expiry_alert_days" to expiryAlertDays.toString(),
     "history_page_size" to historyPageSize.toString(),
-    "rotation_top_n" to rotationTopN.toString()
+    "rotation_top_n" to rotationTopN.toString(),
+    "is_dark_mode" to isDarkMode.toString()
 )
 
 fun ExchangeRateResponse.toExchangeRate(): ExchangeRate =

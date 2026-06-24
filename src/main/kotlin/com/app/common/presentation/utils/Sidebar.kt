@@ -33,7 +33,7 @@ fun Sidebar(
         modifier = modifier
             .width(240.dp)
             .fillMaxHeight()
-            .background(BoneWhite)
+            .background(MaterialTheme.colors.surface)
             .padding(vertical = 16.dp)
     ) {
         Text(
@@ -65,15 +65,15 @@ private fun SidebarItem(
     onClick: () -> Unit
 ) {
     val backgroundColor = if (isSelected) {
-        LightPeach
+        MaterialTheme.colors.primary.copy(alpha = 0.15f)
     } else {
-        BoneWhite
+        MaterialTheme.colors.surface
     }
 
     val contentColor = if (isSelected) {
         MaterialTheme.colors.primary
     } else {
-        TaupeGray
+        MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
     }
 
     Box(modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)) {

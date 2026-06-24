@@ -25,7 +25,7 @@ fun ProductSearchPanel(state: PosState, onEvent: (PosEvent) -> Unit, modifier: M
     var barcodeInput by remember { mutableStateOf("") }
 
     Column(modifier = modifier.fillMaxHeight().padding(20.dp)) {
-        Text("Buscar producto", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+        Text("Buscar producto", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
         Spacer(Modifier.height(16.dp))
 
         OutlinedTextField(
@@ -78,7 +78,7 @@ fun ProductSearchPanel(state: PosState, onEvent: (PosEvent) -> Unit, modifier: M
 private fun ProductResultCard(product: Product, onAdd: () -> Unit) {
     Card(
         shape = RoundedCornerShape(12.dp),
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -87,7 +87,7 @@ private fun ProductResultCard(product: Product, onAdd: () -> Unit) {
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text(product.name, fontWeight = FontWeight.Medium, color = CharcoalBrown, fontSize = 14.sp)
+                Text(product.name, fontWeight = FontWeight.Medium, color = MaterialTheme.colors.onSurface, fontSize = 14.sp)
                 Spacer(Modifier.height(2.dp))
                 Text("$${"%.2f".format(product.price)}  ·  Stock: ${product.stock}", fontSize = 12.sp, color = TaupeGray)
             }
@@ -97,9 +97,9 @@ private fun ProductResultCard(product: Product, onAdd: () -> Unit) {
                 shape = RoundedCornerShape(8.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = PeachOrange,
-                    contentColor = BoneWhite,
-                    disabledBackgroundColor = DarkSand,
-                    disabledContentColor = TaupeGray
+                    contentColor = MaterialTheme.colors.surface,
+                    disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                    disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
                 ),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
             ) {
@@ -111,9 +111,9 @@ private fun ProductResultCard(product: Product, onAdd: () -> Unit) {
 
 @Composable
 private fun posTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
-    backgroundColor = SandBeige,
+    backgroundColor = MaterialTheme.colors.background,
     focusedBorderColor = PeachOrange,
     unfocusedBorderColor = DarkSand,
     cursorColor = PeachOrange,
-    textColor = CharcoalBrown
+    textColor = MaterialTheme.colors.onSurface
 )

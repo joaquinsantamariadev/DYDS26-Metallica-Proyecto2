@@ -1,5 +1,8 @@
 package com.app.inventory.presentation
 
+import androidx.compose.material.MaterialTheme
+import androidx.compose.ui.graphics.Color
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -45,7 +48,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -72,14 +74,14 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
     var deletingProduct by remember { mutableStateOf<Product?>(null) }
 
     Column(
-        modifier = Modifier.fillMaxSize().background(SandBeige).padding(24.dp)
+        modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.background).padding(24.dp)
     ) {
-        Text("Inventario", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+        Text("Inventario", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
         Spacer(Modifier.height(4.dp))
         Text("Gestión de productos y stock", fontSize = 14.sp, color = TaupeGray)
         Spacer(Modifier.height(20.dp))
 
-        Card(shape = RoundedCornerShape(16.dp), backgroundColor = BoneWhite, elevation = 0.dp, modifier = Modifier.fillMaxWidth()) {
+        Card(shape = RoundedCornerShape(16.dp), backgroundColor = MaterialTheme.colors.surface, elevation = 0.dp, modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(12.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
@@ -90,11 +92,11 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            backgroundColor = SandBeige,
+                            backgroundColor = MaterialTheme.colors.background,
                             focusedBorderColor = PeachOrange,
                             unfocusedBorderColor = DarkSand,
                             cursorColor = PeachOrange,
-                            textColor = CharcoalBrown
+                            textColor = MaterialTheme.colors.onSurface
                         ),
                         modifier = Modifier.weight(1f)
                     )
@@ -107,11 +109,11 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
                         singleLine = true,
                         shape = RoundedCornerShape(12.dp),
                         colors = TextFieldDefaults.outlinedTextFieldColors(
-                            backgroundColor = SandBeige,
+                            backgroundColor = MaterialTheme.colors.background,
                             focusedBorderColor = PeachOrange,
                             unfocusedBorderColor = DarkSand,
                             cursorColor = PeachOrange,
-                            textColor = CharcoalBrown
+                            textColor = MaterialTheme.colors.onSurface
                         ),
                         modifier = Modifier.weight(1f)
                     )
@@ -122,9 +124,9 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = PeachOrange,
-                            contentColor = BoneWhite,
-                            disabledBackgroundColor = DarkSand,
-                            disabledContentColor = TaupeGray
+                            contentColor = MaterialTheme.colors.surface,
+                            disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                            disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
                         ),
                         modifier = Modifier.height(56.dp)
                     ) {
@@ -187,18 +189,18 @@ fun InventoryScreen(viewModel: InventoryViewModel) {
     deletingProduct?.let { product ->
         AlertDialog(
             onDismissRequest = { deletingProduct = null },
-            title = { Text("Eliminar producto", color = CharcoalBrown) },
+            title = { Text("Eliminar producto", color = MaterialTheme.colors.onSurface) },
             text = { Text("¿Confirmás que querés eliminar \"${product.name}\"?", color = TaupeGray) },
             confirmButton = {
                 Button(
                     onClick = { product.id?.let { viewModel.deleteProduct(it) }; deletingProduct = null },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = MaterialTheme.colors.surface)
                 ) { Text("Eliminar") }
             },
             dismissButton = {
                 TextButton(onClick = { deletingProduct = null }) { Text("Cancelar", color = TaupeGray) }
             },
-            backgroundColor = BoneWhite,
+            backgroundColor = MaterialTheme.colors.surface,
             shape = RoundedCornerShape(16.dp)
         )
     }
@@ -222,7 +224,7 @@ private fun EditProductDialog(product: Product, onConfirm: (Product) -> Unit, on
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Editar producto", color = CharcoalBrown, fontWeight = FontWeight.Bold) },
+        title = { Text("Editar producto", color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 DialogField("Nombre", name) { name = it }
@@ -244,13 +246,13 @@ private fun EditProductDialog(product: Product, onConfirm: (Product) -> Unit, on
                         expiryDate = parsed
                     ))
                 },
-                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = MaterialTheme.colors.surface)
             ) { Text("Guardar") }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) { Text("Cancelar", color = TaupeGray) }
         },
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         shape = RoundedCornerShape(16.dp)
     )
 }
@@ -264,11 +266,11 @@ private fun DialogField(label: String, value: String, onValueChange: (String) ->
         singleLine = true,
         shape = RoundedCornerShape(8.dp),
         colors = TextFieldDefaults.outlinedTextFieldColors(
-            backgroundColor = SandBeige,
+            backgroundColor = MaterialTheme.colors.background,
             focusedBorderColor = PeachOrange,
             unfocusedBorderColor = DarkSand,
             cursorColor = PeachOrange,
-            textColor = CharcoalBrown
+            textColor = MaterialTheme.colors.onSurface
         ),
         modifier = Modifier.fillMaxWidth()
     )
@@ -294,18 +296,18 @@ private fun ProductTable(
     onEdit: (Product) -> Unit,
     onDelete: (Product) -> Unit
 ) {
-    Card(shape = RoundedCornerShape(16.dp), backgroundColor = BoneWhite, elevation = 0.dp, modifier = Modifier.fillMaxSize()) {
+    Card(shape = RoundedCornerShape(16.dp), backgroundColor = MaterialTheme.colors.surface, elevation = 0.dp, modifier = Modifier.fillMaxSize()) {
         Column {
             Row(
-                modifier = Modifier.fillMaxWidth().background(LightPeach).padding(horizontal = 20.dp, vertical = 14.dp)
+                modifier = Modifier.fillMaxWidth().background(MaterialTheme.colors.primary.copy(alpha = 0.15f)).padding(horizontal = 20.dp, vertical = 14.dp)
             ) {
-                Text("Producto", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(2f))
-                Text("Código", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1.5f))
-                Text("Precio (USD)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
-                Text("Precio (ARS)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
-                Text("Costo (USD)", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1f))
-                Text("Stock", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(0.7f))
-                Text("Vence", fontWeight = FontWeight.SemiBold, color = CharcoalBrown, fontSize = 13.sp, modifier = Modifier.weight(1.2f))
+                Text("Producto", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(2f))
+                Text("Código", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(1.5f))
+                Text("Precio (USD)", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Text("Precio (ARS)", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Text("Costo (USD)", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(1f))
+                Text("Stock", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(0.7f))
+                Text("Vence", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, modifier = Modifier.weight(1.2f))
                 Spacer(Modifier.weight(0.6f))
             }
             Divider(color = DarkSand, thickness = 1.dp)
@@ -330,8 +332,8 @@ private fun ProductRow(
     val isExpired = product.expiryDate?.isBefore(today) == true
     val isExpiringSoon = product.expiryDate?.isBefore(today.plusDays(30)) == true && !isExpired
     val rowBackground = when {
-        isExpired -> Color(0xFFFFEBEB)
-        isExpiringSoon -> Color(0xFFFFF8E1)
+        isExpired -> MaterialTheme.colors.error.copy(alpha = 0.15f)
+        isExpiringSoon -> MaterialTheme.colors.primary.copy(alpha = 0.1f)
         else -> Color.Transparent
     }
 
@@ -339,9 +341,9 @@ private fun ProductRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth().background(rowBackground).padding(horizontal = 20.dp, vertical = 14.dp)
     ) {
-        Text(product.name, color = CharcoalBrown, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(2f))
+        Text(product.name, color = MaterialTheme.colors.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(2f))
         Text(product.barcode ?: "—", color = TaupeGray, fontSize = 13.sp, modifier = Modifier.weight(1.5f))
-        Text("$${String.format("%.2f", product.price)}", color = CharcoalBrown, fontSize = 14.sp, modifier = Modifier.weight(1f))
+        Text("$${String.format("%.2f", product.price)}", color = MaterialTheme.colors.onSurface, fontSize = 14.sp, modifier = Modifier.weight(1f))
         val arsPrice = exchangeRate?.let { product.price * it.rate }
         Text(
             text = arsPrice?.let { "$${"%.2f".format(it)}" } ?: "—",
@@ -350,7 +352,7 @@ private fun ProductRow(
             modifier = Modifier.weight(1f)
         )
         Text("$${String.format("%.2f", product.cost)}", color = TaupeGray, fontSize = 13.sp, modifier = Modifier.weight(1f))
-        Text("${product.stock}", color = CharcoalBrown, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(0.7f))
+        Text("${product.stock}", color = MaterialTheme.colors.onSurface, fontSize = 14.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(0.7f))
         Text(
             text = product.expiryDate?.format(dateFormatter) ?: "—",
             color = when {
@@ -378,10 +380,10 @@ private fun IncrementStockDialog(product: Product, onConfirm: (Int) -> Unit, onD
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Aumentar Stock", color = CharcoalBrown, fontWeight = FontWeight.Bold) },
+        title = { Text("Aumentar Stock", color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold) },
         text = {
             Column {
-                Text("Producto: ${product.name}", color = CharcoalBrown, fontWeight = FontWeight.SemiBold)
+                Text("Producto: ${product.name}", color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.SemiBold)
                 Text("Stock actual: ${product.stock}", color = TaupeGray, fontSize = 14.sp)
                 Spacer(Modifier.height(16.dp))
                 DialogField("Cantidad a sumar", quantity) {
@@ -400,13 +402,13 @@ private fun IncrementStockDialog(product: Product, onConfirm: (Int) -> Unit, onD
                     }
                 },
                 enabled = (quantity.toIntOrNull() ?: 0) > 0,
-                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = MaterialTheme.colors.surface)
             ) { Text("Agregar") }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) { Text("Cancelar", color = TaupeGray) }
         },
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         shape = RoundedCornerShape(16.dp)
     )
 }

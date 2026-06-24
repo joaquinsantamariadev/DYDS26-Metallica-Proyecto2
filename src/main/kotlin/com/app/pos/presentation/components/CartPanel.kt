@@ -29,7 +29,7 @@ fun CartPanel(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.fillMaxHeight().padding(20.dp)) {
-        Text("Carrito", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+        Text("Carrito", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
         Spacer(Modifier.height(16.dp))
 
         if (state.cartItems.isEmpty()) {
@@ -57,7 +57,7 @@ fun CartPanel(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Total", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+            Text("Total", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
             Text(
                 "$${"%.2f".format(state.cartTotal)}",
                 fontSize = 22.sp,
@@ -84,9 +84,9 @@ fun CartPanel(
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = PeachOrange,
-                contentColor = BoneWhite,
-                disabledBackgroundColor = DarkSand,
-                disabledContentColor = TaupeGray
+                contentColor = MaterialTheme.colors.surface,
+                disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
             ),
             modifier = Modifier.fillMaxWidth().height(52.dp)
         ) {
@@ -102,7 +102,7 @@ private fun CartItemRow(item: CartItem, onEvent: (PosEvent) -> Unit) {
         modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
     ) {
         Column(modifier = Modifier.weight(1f)) {
-            Text(item.product.name, fontWeight = FontWeight.Medium, color = CharcoalBrown, fontSize = 14.sp)
+            Text(item.product.name, fontWeight = FontWeight.Medium, color = MaterialTheme.colors.onSurface, fontSize = 14.sp)
             Text("$${"%.2f".format(item.product.price)} c/u", fontSize = 12.sp, color = TaupeGray)
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -114,7 +114,7 @@ private fun CartItemRow(item: CartItem, onEvent: (PosEvent) -> Unit) {
             }
             Text(
                 item.quantity.toString(),
-                color = CharcoalBrown,
+                color = MaterialTheme.colors.onSurface,
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 14.sp,
                 textAlign = TextAlign.Center,
@@ -131,7 +131,7 @@ private fun CartItemRow(item: CartItem, onEvent: (PosEvent) -> Unit) {
         Text(
             "$${"%.2f".format(item.subtotal)}",
             fontWeight = FontWeight.Medium,
-            color = CharcoalBrown,
+            color = MaterialTheme.colors.onSurface,
             fontSize = 14.sp,
             modifier = Modifier.widthIn(min = 72.dp),
             textAlign = TextAlign.End

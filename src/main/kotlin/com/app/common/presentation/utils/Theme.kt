@@ -1,6 +1,7 @@
 package com.app.common.presentation.utils
 
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
@@ -25,6 +26,20 @@ private val LightColorPalette = lightColors(
     onError = Color.White
 )
 
+private val DarkColorPalette = darkColors(
+    primary = PeachOrange,
+    primaryVariant = PeachOrange,
+    secondary = PeachOrange,
+    background = Color(0xFF121212),
+    surface = Color(0xFF1E1E1E),
+    error = Color(0xFFCF6679),
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onBackground = Color(0xFFE0E0E0),
+    onSurface = Color(0xFFE0E0E0),
+    onError = Color.Black
+)
+
 private val AppTypography = Typography(
     defaultFontFamily = FontFamily.SansSerif,
     h4 = TextStyle(fontWeight = FontWeight.Bold, fontSize = 30.sp, color = CharcoalBrown),
@@ -38,10 +53,25 @@ private val AppTypography = Typography(
 )
 
 @Composable
-fun AppTheme(content: @Composable () -> Unit) {
+fun AppTheme(darkTheme: Boolean = false, content: @Composable () -> Unit) {
+    val colors = if (darkTheme) DarkColorPalette else LightColorPalette
+
+    
+    val currentTypography = Typography(
+        defaultFontFamily = FontFamily.SansSerif,
+        h4 = AppTypography.h4.copy(color = colors.onSurface),
+        h5 = AppTypography.h5.copy(color = colors.onSurface),
+        h6 = AppTypography.h6.copy(color = colors.onSurface),
+        subtitle1 = AppTypography.subtitle1.copy(color = colors.onSurface),
+        body1 = AppTypography.body1.copy(color = colors.onSurface.copy(alpha = 0.8f)),
+        body2 = AppTypography.body2.copy(color = colors.onSurface.copy(alpha = 0.8f)),
+        button = AppTypography.button,
+        caption = AppTypography.caption.copy(color = colors.onSurface.copy(alpha = 0.6f))
+    )
+
     MaterialTheme(
-        colors = LightColorPalette,
-        typography = AppTypography,
+        colors = colors,
+        typography = currentTypography,
         content = content
     )
 }

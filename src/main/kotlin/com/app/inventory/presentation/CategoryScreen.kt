@@ -1,5 +1,7 @@
 package com.app.inventory.presentation
 
+import androidx.compose.material.MaterialTheme
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -57,13 +59,13 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
     var editingCategory by remember { mutableStateOf<Category?>(null) }
     var deletingCategory by remember { mutableStateOf<Category?>(null) }
 
-    Column(modifier = Modifier.fillMaxSize().background(SandBeige).padding(24.dp)) {
-        Text("Categorías", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.background).padding(24.dp)) {
+        Text("Categorías", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
         Spacer(Modifier.height(4.dp))
         Text("Administración de rubros", fontSize = 14.sp, color = TaupeGray)
         Spacer(Modifier.height(20.dp))
 
-        Card(shape = RoundedCornerShape(16.dp), backgroundColor = BoneWhite, elevation = 0.dp, modifier = Modifier.fillMaxWidth()) {
+        Card(shape = RoundedCornerShape(16.dp), backgroundColor = MaterialTheme.colors.surface, elevation = 0.dp, modifier = Modifier.fillMaxWidth()) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(12.dp)) {
                 OutlinedTextField(
                     value = newCategoryName,
@@ -73,11 +75,11 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
                     singleLine = true,
                     shape = RoundedCornerShape(12.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        backgroundColor = SandBeige,
+                        backgroundColor = MaterialTheme.colors.background,
                         focusedBorderColor = PeachOrange,
                         unfocusedBorderColor = DarkSand,
                         cursorColor = PeachOrange,
-                        textColor = CharcoalBrown
+                        textColor = MaterialTheme.colors.onSurface
                     ),
                     modifier = Modifier.weight(1f)
                 )
@@ -88,9 +90,9 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = PeachOrange,
-                        contentColor = BoneWhite,
-                        disabledBackgroundColor = DarkSand,
-                        disabledContentColor = TaupeGray
+                        contentColor = MaterialTheme.colors.surface,
+                        disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                        disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
                     ),
                     modifier = Modifier.height(56.dp)
                 ) {
@@ -116,7 +118,7 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
             }
             else -> Card(
                 shape = RoundedCornerShape(16.dp),
-                backgroundColor = BoneWhite,
+                backgroundColor = MaterialTheme.colors.surface,
                 elevation = 0.dp,
                 modifier = Modifier.fillMaxSize()
             ) {
@@ -126,7 +128,7 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 14.dp)
                         ) {
-                            Text(category.name, color = CharcoalBrown, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
+                            Text(category.name, color = MaterialTheme.colors.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium, modifier = Modifier.weight(1f))
                             IconButton(onClick = { editingCategory = category }, modifier = Modifier.size(32.dp)) {
                                 Icon(Icons.Default.Edit, null, tint = TaupeGray, modifier = Modifier.size(16.dp))
                             }
@@ -145,7 +147,7 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
         var editedName by remember { mutableStateOf(category.name) }
         AlertDialog(
             onDismissRequest = { editingCategory = null },
-            title = { Text("Editar categoría", color = CharcoalBrown, fontWeight = FontWeight.Bold) },
+            title = { Text("Editar categoría", color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold) },
             text = {
                 OutlinedTextField(
                     value = editedName,
@@ -154,11 +156,11 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
                     singleLine = true,
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        backgroundColor = SandBeige,
+                        backgroundColor = MaterialTheme.colors.background,
                         focusedBorderColor = PeachOrange,
                         unfocusedBorderColor = DarkSand,
                         cursorColor = PeachOrange,
-                        textColor = CharcoalBrown
+                        textColor = MaterialTheme.colors.onSurface
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -166,13 +168,13 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
             confirmButton = {
                 Button(
                     onClick = { viewModel.updateCategory(category.copy(name = editedName)); editingCategory = null },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = MaterialTheme.colors.surface)
                 ) { Text("Guardar") }
             },
             dismissButton = {
                 TextButton(onClick = { editingCategory = null }) { Text("Cancelar", color = TaupeGray) }
             },
-            backgroundColor = BoneWhite,
+            backgroundColor = MaterialTheme.colors.surface,
             shape = RoundedCornerShape(16.dp)
         )
     }
@@ -180,18 +182,18 @@ fun CategoryScreen(viewModel: CategoryViewModel) {
     deletingCategory?.let { category ->
         AlertDialog(
             onDismissRequest = { deletingCategory = null },
-            title = { Text("Eliminar categoría", color = CharcoalBrown) },
+            title = { Text("Eliminar categoría", color = MaterialTheme.colors.onSurface) },
             text = { Text("¿Confirmás que querés eliminar \"${category.name}\"?", color = TaupeGray) },
             confirmButton = {
                 Button(
                     onClick = { category.id?.let { viewModel.deleteCategory(it) }; deletingCategory = null },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                    colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = MaterialTheme.colors.surface)
                 ) { Text("Eliminar") }
             },
             dismissButton = {
                 TextButton(onClick = { deletingCategory = null }) { Text("Cancelar", color = TaupeGray) }
             },
-            backgroundColor = BoneWhite,
+            backgroundColor = MaterialTheme.colors.surface,
             shape = RoundedCornerShape(16.dp)
         )
     }

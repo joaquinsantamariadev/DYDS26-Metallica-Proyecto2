@@ -22,7 +22,7 @@ fun PaymentDialog(onConfirm: (PaymentMethod) -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text("Método de pago", color = CharcoalBrown, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text("Método de pago", color = MaterialTheme.colors.onSurface, fontWeight = FontWeight.Bold, fontSize = 18.sp)
         },
         text = {
             Column {
@@ -37,7 +37,7 @@ fun PaymentDialog(onConfirm: (PaymentMethod) -> Unit, onDismiss: () -> Unit) {
                             colors = RadioButtonDefaults.colors(selectedColor = PeachOrange)
                         )
                         Spacer(Modifier.width(8.dp))
-                        Text(method.label(), color = CharcoalBrown, fontSize = 14.sp)
+                        Text(method.label(), color = MaterialTheme.colors.onSurface, fontSize = 14.sp)
                     }
                 }
             }
@@ -46,13 +46,13 @@ fun PaymentDialog(onConfirm: (PaymentMethod) -> Unit, onDismiss: () -> Unit) {
             Button(
                 onClick = { onConfirm(selected) },
                 shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(backgroundColor = PeachOrange, contentColor = BoneWhite)
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary, contentColor = MaterialTheme.colors.surface)
             ) { Text("Confirmar") }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) { Text("Cancelar", color = TaupeGray) }
         },
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         shape = RoundedCornerShape(16.dp)
     )
 }

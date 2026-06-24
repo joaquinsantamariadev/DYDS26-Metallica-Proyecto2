@@ -15,6 +15,7 @@ fun SystemSettingsForm(
 ) {
     var threshold by remember(settings) { mutableStateOf(settings.defaultLowStockThreshold.toString()) }
     var expiryDays by remember(settings) { mutableStateOf(settings.expiryAlertDays.toString()) }
+    var isDarkMode by remember(settings) { mutableStateOf(settings.isDarkMode) }
 
     Column(modifier = modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("Parámetros del Sistema", style = MaterialTheme.typography.h6)
@@ -28,10 +29,19 @@ fun SystemSettingsForm(
             onValueChange = { if (it.all { char -> char.isDigit() }) expiryDays = it },
             label = { Text("Días de Alerta de Vencimiento") }
         )
+        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+            Text("Modo Oscuro")
+            Spacer(modifier = Modifier.width(8.dp))
+            Switch(
+                checked = isDarkMode,
+                onCheckedChange = { isDarkMode = it }
+            )
+        }
         Button(onClick = {
             onSave(settings.copy(
                 defaultLowStockThreshold = threshold.toIntOrNull() ?: settings.defaultLowStockThreshold,
-                expiryAlertDays = expiryDays.toIntOrNull() ?: settings.expiryAlertDays
+                expiryAlertDays = expiryDays.toIntOrNull() ?: settings.expiryAlertDays,
+                isDarkMode = isDarkMode
             ))
         }) {
             Text("Guardar Parámetros del Sistema")

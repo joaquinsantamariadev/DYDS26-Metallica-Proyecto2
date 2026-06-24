@@ -1,5 +1,7 @@
 package com.app.pos.presentation
 
+import androidx.compose.material.MaterialTheme
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
@@ -50,7 +52,7 @@ fun PosScreen(viewModel: PosViewModel, cashRegisterViewModel: CashRegisterViewMo
     }
 
     Scaffold(scaffoldState = scaffoldState) {
-        Column(modifier = Modifier.fillMaxSize().background(SandBeige)) {
+        Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.background)) {
             SessionStatusBar(
                 activeSession = state.activeSession,
                 onManageSession = { showCashRegister = true }
@@ -59,7 +61,7 @@ fun PosScreen(viewModel: PosViewModel, cashRegisterViewModel: CashRegisterViewMo
                 ProductSearchPanel(
                     state = state,
                     onEvent = viewModel::onEvent,
-                    modifier = Modifier.weight(0.55f).background(BoneWhite)
+                    modifier = Modifier.weight(0.55f).background(MaterialTheme.colors.surface)
                 )
                 Box(modifier = Modifier.fillMaxHeight().width(1.dp).background(DarkSand))
                 CartPanel(

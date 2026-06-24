@@ -23,7 +23,8 @@ fun RevenueChart(summary: RevenueSummary) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text("Total: \$${summary.totalRevenue}")
             Text("Ventas: ${summary.totalSales}")
-            Text("Ticket Promedio: \$${summary.averageTicket}")
+            val formattedTicket = "%.2f".format(summary.averageTicket)
+            Text("Ticket Promedio: \$$formattedTicket")
         }
         Spacer(modifier = Modifier.height(32.dp))
 

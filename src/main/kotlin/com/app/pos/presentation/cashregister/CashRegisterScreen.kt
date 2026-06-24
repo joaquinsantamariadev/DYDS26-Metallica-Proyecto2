@@ -30,14 +30,14 @@ fun CashRegisterScreen(viewModel: CashRegisterViewModel, onBack: () -> Unit) {
     val state by viewModel.state.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize().background(SandBeige).padding(24.dp)
+        modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.background).padding(24.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             IconButton(onClick = onBack, modifier = Modifier.size(36.dp)) {
-                Icon(Icons.Default.ArrowBack, null, tint = CharcoalBrown)
+                Icon(Icons.Default.ArrowBack, null, tint = MaterialTheme.colors.onSurface)
             }
             Spacer(Modifier.width(8.dp))
-            Text("Sesión de caja", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = CharcoalBrown)
+            Text("Sesión de caja", fontSize = 28.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onSurface)
         }
 
         Spacer(Modifier.height(24.dp))
@@ -63,11 +63,11 @@ fun CashRegisterScreen(viewModel: CashRegisterViewModel, onBack: () -> Unit) {
             Spacer(Modifier.height(24.dp))
 
             if (state.sessionHistory.isNotEmpty()) {
-                Text("Historial", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = CharcoalBrown)
+                Text("Historial", fontSize = 18.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface)
                 Spacer(Modifier.height(12.dp))
                 Card(
                     shape = RoundedCornerShape(16.dp),
-                    backgroundColor = BoneWhite,
+                    backgroundColor = MaterialTheme.colors.surface,
                     elevation = 0.dp,
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -90,12 +90,12 @@ private fun OpenSessionForm(onOpen: (Double) -> Unit) {
 
     Card(
         shape = RoundedCornerShape(16.dp),
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
-            Text("Abrir caja", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = CharcoalBrown)
+            Text("Abrir caja", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface)
             Spacer(Modifier.height(12.dp))
             OutlinedTextField(
                 value = input,
@@ -114,9 +114,9 @@ private fun OpenSessionForm(onOpen: (Double) -> Unit) {
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = PeachOrange,
-                    contentColor = BoneWhite,
-                    disabledBackgroundColor = DarkSand,
-                    disabledContentColor = TaupeGray
+                    contentColor = MaterialTheme.colors.surface,
+                    disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                    disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
                 ),
                 modifier = Modifier.fillMaxWidth().height(48.dp)
             ) {
@@ -135,12 +135,12 @@ private fun ActiveSessionPanel(session: CashRegisterSession, onClose: (Double) -
 
     Card(
         shape = RoundedCornerShape(16.dp),
-        backgroundColor = BoneWhite,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = 0.dp,
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(20.dp)) {
-            Text("Turno activo", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = CharcoalBrown)
+            Text("Turno activo", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = MaterialTheme.colors.onSurface)
             Spacer(Modifier.height(12.dp))
             SessionDetailRow("Apertura", session.openedAt.format(timeFormatter))
             SessionDetailRow("Monto inicial", "$${"%.2f".format(session.openingAmount)}")
@@ -162,9 +162,9 @@ private fun ActiveSessionPanel(session: CashRegisterSession, onClose: (Double) -
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = PeachOrange,
-                    contentColor = BoneWhite,
-                    disabledBackgroundColor = DarkSand,
-                    disabledContentColor = TaupeGray
+                    contentColor = MaterialTheme.colors.surface,
+                    disabledBackgroundColor = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+                    disabledContentColor = MaterialTheme.colors.onSurface.copy(alpha = 0.38f)
                 ),
                 modifier = Modifier.fillMaxWidth().height(48.dp)
             ) {
@@ -183,7 +183,7 @@ private fun SessionDetailRow(label: String, value: String) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(label, color = TaupeGray, fontSize = 13.sp)
-        Text(value, color = CharcoalBrown, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+        Text(value, color = MaterialTheme.colors.onSurface, fontSize = 13.sp, fontWeight = FontWeight.Medium)
     }
 }
 
@@ -201,7 +201,7 @@ private fun SessionHistoryRow(session: CashRegisterSession) {
         )
         Spacer(Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(session.openedAt.format(timeFormatter), color = CharcoalBrown, fontSize = 13.sp, fontWeight = FontWeight.Medium)
+            Text(session.openedAt.format(timeFormatter), color = MaterialTheme.colors.onSurface, fontSize = 13.sp, fontWeight = FontWeight.Medium)
             session.closedAt?.let {
                 Text("Cerrada: ${it.format(timeFormatter)}", color = TaupeGray, fontSize = 12.sp)
             }
@@ -217,9 +217,9 @@ private fun SessionHistoryRow(session: CashRegisterSession) {
 
 @Composable
 private fun cashTextFieldColors() = TextFieldDefaults.outlinedTextFieldColors(
-    backgroundColor = SandBeige,
+    backgroundColor = MaterialTheme.colors.background,
     focusedBorderColor = PeachOrange,
     unfocusedBorderColor = DarkSand,
     cursorColor = PeachOrange,
-    textColor = CharcoalBrown
+    textColor = MaterialTheme.colors.onSurface
 )

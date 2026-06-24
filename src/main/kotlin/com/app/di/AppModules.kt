@@ -119,7 +119,7 @@ val appModule = module {
     factory { CategoryViewModel(get()) }
     factory { PosViewModel(get(), get(), get(), get()) }
     factory { CashRegisterViewModel(get(), get(), get(), get()) }
-    factory { SettingsViewModel(get(), get(), get(), get(), get()) }
+    single { SettingsViewModel(get(), get(), get(), get(), get()) }
 
     single<DashboardRepository> { DashboardRepositoryImpl() }
 
