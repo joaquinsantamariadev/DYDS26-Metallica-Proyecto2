@@ -49,7 +49,6 @@ fun RevenueChart(summary: RevenueSummary) {
             val barWidth = (size.width / (count * 2f)).coerceAtMost(100f)
             val startOffset = (size.width - (barWidth * 2f * count)) / 2f + barWidth / 2f
 
-            // Draw horizontal grid lines
             val steps = 4
             for (i in 0..steps) {
                 val y = topPadding + chartHeight - (i * chartHeight / steps)
@@ -59,7 +58,6 @@ fun RevenueChart(summary: RevenueSummary) {
                     end = Offset(size.width, y),
                     strokeWidth = 1.5f
                 )
-                // Y-Axis labels could be added here
             }
 
             summary.dataPoints.forEachIndexed { index, point ->
@@ -67,7 +65,6 @@ fun RevenueChart(summary: RevenueSummary) {
                 val x = startOffset + index * barWidth * 2f
                 val y = topPadding + chartHeight - barHeight
 
-                // Draw gradient bar
                 drawRoundRect(
                     brush = Brush.verticalGradient(
                         colors = listOf(primaryColor, primaryColor.copy(alpha = 0.5f)),
@@ -89,13 +86,11 @@ fun RevenueChart(summary: RevenueSummary) {
                         )
                     }
                     
-                    // Draw value above bar
                     val valueFont = Font(null, 12f)
                     val valueText = "\$${"%.0f".format(point.revenue)}"
                     val valueLine = TextLine.make(valueText, valueFont)
                     canvas.nativeCanvas.drawTextLine(valueLine, x + barWidth / 2 - valueLine.width / 2, y - 10f, skiaPaint)
 
-                    // Draw X-axis label
                     val labelFont = Font(null, 13f)
                     val textLine = TextLine.make(labels[index], labelFont)
                     canvas.nativeCanvas.drawTextLine(textLine, x + barWidth / 2 - textLine.width / 2, size.height - 10f, skiaPaint)

@@ -47,7 +47,7 @@ object DatabaseFactory {
         val random = java.util.Random()
         for (i in 0..5) {
             val monthDate = java.time.LocalDateTime.now().minusMonths((5 - i).toLong())
-            val salesCount = random.nextInt(20) + 10 // 10 to 30 sales
+            val salesCount = random.nextInt(20) + 10
             for (j in 0..salesCount) {
                 SalesTable.insert {
                     it[sessionId] = sId
