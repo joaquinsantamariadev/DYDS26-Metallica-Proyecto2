@@ -2,7 +2,7 @@ package com.app.presentation
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import com.app.data.local.DatabaseFactory
+import com.app.common.data.local.DatabaseFactory
 import com.app.di.appModule
 import org.koin.core.context.startKoin
 

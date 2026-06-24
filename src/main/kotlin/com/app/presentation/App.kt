@@ -9,10 +9,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.app.presentation.navigation.NavigationHost
-import com.app.presentation.navigation.Screen
-import com.app.presentation.utils.AppTheme
-import com.app.presentation.utils.Sidebar
+import com.app.common.presentation.navigation.NavigationHost
+import com.app.common.presentation.navigation.Screen
+import com.app.common.presentation.utils.AppTheme
+import com.app.common.presentation.utils.Sidebar
 
 @Composable
 fun App() {
